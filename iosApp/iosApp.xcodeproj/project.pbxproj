@@ -11,7 +11,11 @@
 		058557D9273AAEEB004C7B11 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */; };
 		2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* iOSApp.swift */; };
 		4A63E988F8DA516F3C13DF9F /* Pods_iosApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AE7FAE1A6903519EE99011D /* Pods_iosApp.framework */; };
-		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
+		989B91162778A79100AFB8FE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989B91112778A79000AFB8FE /* ContentView.swift */; };
+		989B91172778A79100AFB8FE /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989B91122778A79000AFB8FE /* Game.swift */; };
+		989B91182778A79100AFB8FE /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989B91132778A79000AFB8FE /* HomeView.swift */; };
+		989B91192778A79100AFB8FE /* TimeText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989B91142778A79100AFB8FE /* TimeText.swift */; };
+		989B911A2778A79100AFB8FE /* IncrementalText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989B91152778A79100AFB8FE /* IncrementalText.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,8 +26,12 @@
 		5AE7FAE1A6903519EE99011D /* Pods_iosApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iosApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F92AFD54F96088D5D168C87 /* Pods-iosApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.release.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.release.xcconfig"; sourceTree = "<group>"; };
 		7555FF7B242A565900829871 /* iosApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		7555FF82242A565900829871 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		989B91112778A79000AFB8FE /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContentView.swift; path = "../../../../Development/Chess Clock Test/Shared/ContentView.swift"; sourceTree = "<group>"; };
+		989B91122778A79000AFB8FE /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+		989B91132778A79000AFB8FE /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		989B91142778A79100AFB8FE /* TimeText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeText.swift; sourceTree = "<group>"; };
+		989B91152778A79100AFB8FE /* IncrementalText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncrementalText.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,8 +75,12 @@
 		7555FF7D242A565900829871 /* iosApp */ = {
 			isa = PBXGroup;
 			children = (
+				989B91112778A79000AFB8FE /* ContentView.swift */,
+				989B91122778A79000AFB8FE /* Game.swift */,
+				989B91132778A79000AFB8FE /* HomeView.swift */,
+				989B91152778A79100AFB8FE /* IncrementalText.swift */,
+				989B91142778A79100AFB8FE /* TimeText.swift */,
 				058557BA273AAA24004C7B11 /* Assets.xcassets */,
-				7555FF82242A565900829871 /* ContentView.swift */,
 				7555FF8C242A565B00829871 /* Info.plist */,
 				2152FB032600AC8F00CF470E /* iOSApp.swift */,
 				058557D7273AAEEB004C7B11 /* Preview Content */,
@@ -82,7 +94,6 @@
 				035C306F7C8909F015A1938B /* Pods-iosApp.debug.xcconfig */,
 				5F92AFD54F96088D5D168C87 /* Pods-iosApp.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -191,7 +202,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
-				7555FF83242A565900829871 /* ContentView.swift in Sources */,
+				989B91162778A79100AFB8FE /* ContentView.swift in Sources */,
+				989B91192778A79100AFB8FE /* TimeText.swift in Sources */,
+				989B911A2778A79100AFB8FE /* IncrementalText.swift in Sources */,
+				989B91182778A79100AFB8FE /* HomeView.swift in Sources */,
+				989B91172778A79100AFB8FE /* Game.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -249,7 +264,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -304,7 +319,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
