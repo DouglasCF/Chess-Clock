@@ -1,20 +1,34 @@
 package br.com.fornaro.chessclock.android
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import br.com.fornaro.chessclock.Greeting
-import android.widget.TextView
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.material.Scaffold
+import androidx.compose.material.ScaffoldState
+import androidx.compose.material.rememberScaffoldState
+import androidx.compose.runtime.Composable
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
+import br.com.fornaro.chessclock.android.navigation.appNavigation
+import br.com.fornaro.chessclock.android.theme.AppTheme
+import dagger.hilt.android.AndroidEntryPoint
 
-fun greet(): String {
-    return Greeting().greeting()
-}
-
-class MainActivity : AppCompatActivity() {
+@AndroidEntryPoint
+class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
-        val tv: TextView = findViewById(R.id.text_view)
-        tv.text = greet()
+        setContent {
+            val navController = rememberNavController()
+            val scaffoldState = rememberScaffoldState()
+            AppTheme {
+                Content(navController, scaffoldState)
+            }
+        }
     }
 }
+
+@Composable
+fun Content(navController: NavHostController, scaffoldState: ScaffoldState) = Scaffold(
+    scaffoldState = scaffoldState,
+    content = appNavigation(navController = navController)
+)
