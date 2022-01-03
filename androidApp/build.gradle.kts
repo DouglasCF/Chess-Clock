@@ -22,7 +22,7 @@ android {
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
-                targetCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
     kotlinOptions {
         jvmTarget = "1.8"
@@ -48,12 +48,17 @@ dependencies {
     // Compose
     implementation(Dependencies.composeUiTooling)
     implementation(Dependencies.composeMaterial)
+    implementation(Dependencies.composeIcons)
+    implementation(Dependencies.composeIconsExtended)
 
     // Compose and others
     implementation(Dependencies.composeActivity)
     implementation(Dependencies.composeNavigation)
+    implementation(Dependencies.composeHiltNavigation)
 
     // Hilt
     implementation(Dependencies.hiltAndroid)
+    implementation(Dependencies.hiltViewModel)
     kapt(Dependencies.hiltDaggerCompiler)
+    kapt(Dependencies.hiltCompiler)
 }

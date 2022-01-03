@@ -11,7 +11,9 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import br.com.fornaro.chessclock.android.navigation.appNavigation
 import br.com.fornaro.chessclock.android.theme.AppTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
