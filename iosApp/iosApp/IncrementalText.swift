@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct IncrementalText: View {
-    var value: Int64
+    var value: String
     
     var body: some View {
         VStack {
@@ -9,10 +9,10 @@ struct IncrementalText: View {
             HStack(spacing: 2) {
                 Image(systemName: "arrow.up")
                     .font(.system(size: 14))
-                Text(String(value))
+                Text(value)
                     .font(.system(size: 16))
             }
-            .opacity(value == 0 ? 0.3 : 1)
+            .opacity(value == "0" ? 0.3 : 1)
             .padding()
         }
     }
@@ -20,6 +20,6 @@ struct IncrementalText: View {
 
 struct IncrementalText_Previews: PreviewProvider {
     static var previews: some View {
-        IncrementalText(value: 3)
+        IncrementalText(value: "3")
     }
 }
