@@ -40,12 +40,6 @@ struct HomeView: View {
                     .buttonStyle(PlainButtonStyle())
                     
                     Spacer()
-                    
-                    Image(systemName: "stop.fill")
-                        .resizable()
-                        .frame(width: 30, height: 30)
-                    
-                    Spacer()
                 }
                 .frame(height: minHeight)
                 .background(.gray)
