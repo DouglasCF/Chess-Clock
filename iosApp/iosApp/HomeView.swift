@@ -1,20 +1,25 @@
 import SwiftUI
 
 struct HomeView: View {
-    @State var game = Game(totalTime: 1*60, increment: 2)
+    @ObservedObject var homeViewModel = HomeViewModel()
     let minHeight = CGFloat(80)
     
+    let whiteTimer = Timer.publish(every: 1/10, on: .main, in: .common).autoconnect()
+    let blackTimer = Timer.publish(every: 1/10, on: .main, in: .common).autoconnect()
+    
     var body: some View {
+        let game = homeViewModel.game
+        
         ZStack {
             VStack(spacing: 0) {
-                Button(action: { self.game.onWhitePressClock() }) {
-                    TimeText(timer: self.game.whiteTimeRemaining)
-                        .frame(maxWidth: .infinity, maxHeight: self.game.isWhiteMove ? .infinity : minHeight, alignment: .bottom)
+                Button(action: { homeViewModel.onWhitePressedClock() }) {
+                    TimeText(time: game.whiteTimeRemainingString)
+                        .frame(maxWidth: .infinity, maxHeight: game.isWhiteMove ? .infinity : minHeight, alignment: .bottom)
                         .foregroundColor(.black)
                         .background(.white)
                         .rotationEffect(Angle(degrees: 180))
-                        .onReceive(self.game.whiteTimer) { _ in
-                            self.game.decrementWhiteTime()
+                        .onReceive(whiteTimer) { _ in
+                            homeViewModel.decreaseWhiteTime()
                         }
                 }
                 
@@ -27,8 +32,8 @@ struct HomeView: View {
                     
                     Spacer()
                     
-                    Button(action: { self.game.changePlayPause() }) {
-                        Image(systemName: self.game.isPlaying ? "pause.fill" : "play.fill")
+                    Button(action: { homeViewModel.changePlayPause() }) {
+                        Image(systemName: game.isPlaying ? "pause.fill" : "play.fill")
                             .resizable()
                             .frame(width: 30, height: 30)
                     }
@@ -45,23 +50,23 @@ struct HomeView: View {
                 .frame(height: minHeight)
                 .background(.gray)
                 
-                Button(action: { self.game.onBlackPressClock() }) {
-                    TimeText(timer: self.game.blackTimeRemaining)
-                        .frame(maxWidth: .infinity, maxHeight: self.game.isWhiteMove ? minHeight : .infinity, alignment: .bottom)
+                Button(action: { homeViewModel.onBlackPressedClock() }) {
+                    TimeText(time: game.blackTimeRemainingString)
+                        .frame(maxWidth: .infinity, maxHeight: game.isWhiteMove ? minHeight : .infinity, alignment: .bottom)
                         .foregroundColor(.white)
                         .background(.black)
-                        .onReceive(self.game.blackTimer) { _ in
-                            self.game.decrementBlackTime()
+                        .onReceive(blackTimer) { _ in
+                            homeViewModel.decreaseBlackTime()
                         }
                 }
             }
             
-            IncrementalText(value: game.increment)
+            IncrementalText(value: game.incrementTimeString)
                 .frame(maxWidth: .infinity, alignment: .trailing)
                 .foregroundColor(.black)
                 .rotationEffect(Angle(degrees: 180))
             
-            IncrementalText(value: game.increment)
+            IncrementalText(value: game.incrementTimeString)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .foregroundColor(.white)
         }

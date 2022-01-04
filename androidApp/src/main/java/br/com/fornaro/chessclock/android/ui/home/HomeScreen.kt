@@ -29,7 +29,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import br.com.fornaro.chessclock.android.Game
+import br.com.fornaro.chessclock.Game
 import br.com.fornaro.chessclock.android.theme.Dimens
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -40,24 +40,11 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
 
     val game by viewModel.game.collectAsState()
 
-//    LaunchedEffect(key1 = game.whiteTimeRemaining, key2 = game.isPlaying) {
-//        while (game.whiteTimeRemaining > 0 && game.isWhiteMove && game.isPlaying) {
-//            delay(10L)
-//            viewModel.decreaseWhiteTime()
-//        }
-//    }
-//    LaunchedEffect(key1 = game.blackTimeRemaining, key2 = game.isWhiteMove) {
-//        while (game.blackTimeRemaining > 0 && !game.isWhiteMove && game.isPlaying) {
-//            delay(10L)
-//            viewModel.decreaseBlackTime()
-//        }
-//    }
-
     LaunchedEffect(LocalContext.current) {
         launch(Dispatchers.IO) {
         while (true) {
             if (game.whiteTimeRemaining > 0 && game.isWhiteMove && game.isPlaying) {
-                delay(100L)
+                delay(Game.delay)
                 viewModel.decreaseWhiteTime()
             }
         }}
@@ -67,7 +54,7 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
         launch(Dispatchers.IO) {
         while (true) {
             if (game.blackTimeRemaining > 0 && !game.isWhiteMove && game.isPlaying) {
-                delay(100L)
+                delay(Game.delay)
                 viewModel.decreaseBlackTime()
             }
         }}
