@@ -19,7 +19,8 @@ data class Game(
     val blackTimeRemainingString: String
         get() = stringFromTimeInterval(blackTimeRemaining)
 
-    val incrementTimeString get() = increment / milliConst
+    val incrementTimeString: String
+        get() = (increment / milliConst).toString()
 
     private fun stringFromTimeInterval(time: Long): String {
         val seconds = ((time / milliConst) % 60)
@@ -28,12 +29,12 @@ data class Game(
         val ms = (time % milliConst)
 
         return when {
-            hours > 0 -> "${hours.toString().padStart(2,'0')}:" +
-                    "${minutes.toString().padStart(2,'0')}:" +
-                    seconds.toString().padStart(2,'0')
-            minutes > 0 -> "${minutes.toString().padStart(2,'0')}:" +
-                    seconds.toString().padStart(2,'0')
-            else -> seconds.toString().padStart(2,'0')
+            hours > 0 -> "${hours.toString().padStart(2, '0')}:" +
+                    "${minutes.toString().padStart(2, '0')}:" +
+                    seconds.toString().padStart(2, '0')
+            minutes > 0 -> "${minutes.toString().padStart(2, '0')}:" +
+                    seconds.toString().padStart(2, '0')
+            else -> seconds.toString().padStart(2, '0')
         }
     }
 

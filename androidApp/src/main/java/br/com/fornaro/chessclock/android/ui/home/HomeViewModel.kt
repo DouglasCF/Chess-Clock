@@ -10,22 +10,24 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor() : ViewModel() {
 
     private var totalTime = 5 * 60L
+    private var incremental = 2L
 
-    private val _game = MutableStateFlow(Game(totalTime))
+    private val _game: MutableStateFlow<Game> = MutableStateFlow(Game(totalTime, incremental))
     val game get() = _game
 
     init {
-        startGame()
+        startGame(totalTime, incremental)
     }
 
-    fun startGame(startTime: Long = 5 * 60L) {
-        totalTime = startTime
-        _game.value = Game(startTime)
-        updateGame()
+    fun startGame(startTime: Long = 5 * 60L, incremental: Long = 0L) {
+        this.totalTime = startTime
+        this.incremental = incremental
+        _game.value = Game(startTime, incremental)
     }
 
     private fun updateGame(action: Game.() -> Unit = {}) {
-        _game.value = _game.value.copy().apply { action() }
+        _game.value = _game.value.copy(totalTime = totalTime, increment = incremental)
+            .apply { action() }
     }
 
     fun changePlayPause() = updateGame { changePlayPause() }

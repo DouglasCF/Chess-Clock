@@ -3,6 +3,7 @@ package br.com.fornaro.chessclock.android.ui.home
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -71,44 +72,56 @@ private fun Content(
     onWhitePressedClock: () -> Unit = {},
     onBlackPressedClock: () -> Unit = {},
 ) {
+    Box {
+        Column {
+            TimeText(
+                onClickAction = onWhitePressedClock,
+                backgroundColor = Color.White,
+                modifier = (if (game.isWhiteMove) Modifier.weight(1f) else Modifier).rotate(180f),
+                text = game.whiteTimeRemainingString,
+                textColor = Color.Black,
+            )
 
-    Column {
-        TimeText(
-            onClickAction = onWhitePressedClock,
-            backgroundColor = Color.White,
-            modifier = (if (game.isWhiteMove) Modifier.weight(1f) else Modifier).rotate(180f),
-            text = game.whiteTimeRemainingString,
-            textColor = Color.Black,
-        )
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(Color.Gray)
+                    .padding(Dimens.default),
+                horizontalArrangement = Arrangement.SpaceAround
+            ) {
+                OutlinedButton(
+                    colors = ButtonDefaults.outlinedButtonColors(backgroundColor = Color.Gray),
+                    onClick = { /*TODO*/ }) {
+                    Image(imageVector = Icons.Default.Settings, contentDescription = null)
+                }
+                OutlinedButton(
+                    colors = ButtonDefaults.outlinedButtonColors(backgroundColor = Color.Gray),
+                    onClick = { changePlayPause() }) {
+                    Image(
+                        imageVector = if (game.isPlaying) Icons.Default.Pause else Icons.Default.PlayArrow,
+                        contentDescription = null
+                    )
+                }
+            }
 
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .background(Color.Gray)
-                .padding(Dimens.default),
-            horizontalArrangement = Arrangement.SpaceAround
-        ) {
-            OutlinedButton(
-                colors = ButtonDefaults.outlinedButtonColors(backgroundColor = Color.Gray),
-                onClick = { /*TODO*/ }) {
-                Image(imageVector = Icons.Default.Settings, contentDescription = null)
-            }
-            OutlinedButton(
-                colors = ButtonDefaults.outlinedButtonColors(backgroundColor = Color.Gray),
-                onClick = { changePlayPause() }) {
-                Image(
-                    imageVector = if (game.isPlaying) Icons.Default.Pause else Icons.Default.PlayArrow,
-                    contentDescription = null
-                )
-            }
+            TimeText(
+                onClickAction = onBlackPressedClock,
+                backgroundColor = Color.Black,
+                modifier = if (!game.isWhiteMove) Modifier.weight(1f) else Modifier,
+                text = game.blackTimeRemainingString,
+                textColor = Color.White,
+            )
         }
 
-        TimeText(
-            onClickAction = onBlackPressedClock,
-            backgroundColor = Color.Black,
-            modifier = if (!game.isWhiteMove) Modifier.weight(1f) else Modifier,
-            text = game.blackTimeRemainingString,
-            textColor = Color.White,
+        IncrementalText(
+            value = game.incrementTimeString,
+            modifier = Modifier.rotate(180f),
+            horizontalArrangement = Arrangement.End,
+            color = Color.Black
+        )
+        IncrementalText(
+            value = game.incrementTimeString,
+            color = Color.White
         )
     }
 }
