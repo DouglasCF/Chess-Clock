@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct IncrementalText: View {
-    var value: Int
+    var value: Int64
     
     var body: some View {
         VStack {

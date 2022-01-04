@@ -1,7 +1,7 @@
 package br.com.fornaro.chessclock.android.ui.home
 
 import androidx.lifecycle.ViewModel
-import br.com.fornaro.chessclock.android.Game
+import br.com.fornaro.chessclock.Game
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import javax.inject.Inject

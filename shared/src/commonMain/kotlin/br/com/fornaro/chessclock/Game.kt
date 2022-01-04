@@ -1,8 +1,4 @@
-package br.com.fornaro.chessclock.android
-
-import java.util.concurrent.TimeUnit
-
-private const val milliConst = 1000L
+package br.com.fornaro.chessclock
 
 data class Game(
     var totalTime: Long,
@@ -12,24 +8,34 @@ data class Game(
     var whiteTimeRemaining: Long = totalTime * milliConst,
     var blackTimeRemaining: Long = totalTime * milliConst,
 ) {
+    companion object {
+        private const val milliConst = 1000L
+        const val delay = 100L
+    }
 
     val whiteTimeRemainingString: String
-        get() = String.format(
-            "%02d:%02d:%02d", TimeUnit.MILLISECONDS.toHours(whiteTimeRemaining),
-            TimeUnit.MILLISECONDS.toMinutes(whiteTimeRemaining) -
-                    TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(whiteTimeRemaining)),
-            TimeUnit.MILLISECONDS.toSeconds(whiteTimeRemaining) -
-                    TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(whiteTimeRemaining))
-        )
+        get() = stringFromTimeInterval(whiteTimeRemaining)
 
     val blackTimeRemainingString: String
-        get() = String.format(
-            "%02d:%02d:%02d", TimeUnit.MILLISECONDS.toHours(blackTimeRemaining),
-            TimeUnit.MILLISECONDS.toMinutes(blackTimeRemaining) -
-                    TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(blackTimeRemaining)),
-            TimeUnit.MILLISECONDS.toSeconds(blackTimeRemaining) -
-                    TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(blackTimeRemaining))
-        )
+        get() = stringFromTimeInterval(blackTimeRemaining)
+
+    val incrementTimeString get() = increment / milliConst
+
+    private fun stringFromTimeInterval(time: Long): String {
+        val seconds = ((time / milliConst) % 60)
+        val minutes = ((time / 60 / milliConst) % 60)
+        val hours = (time / 3600 / milliConst)
+        val ms = (time % milliConst)
+
+        return when {
+            hours > 0 -> "${hours.toString().padStart(2,'0')}:" +
+                    "${minutes.toString().padStart(2,'0')}:" +
+                    seconds.toString().padStart(2,'0')
+            minutes > 0 -> "${minutes.toString().padStart(2,'0')}:" +
+                    seconds.toString().padStart(2,'0')
+            else -> seconds.toString().padStart(2,'0')
+        }
+    }
 
     init {
         totalTime *= milliConst
@@ -39,14 +45,14 @@ data class Game(
     fun decreaseWhiteTime() {
         if (!isWhiteMove || !isPlaying) return
         if (whiteTimeRemaining > 0) {
-            whiteTimeRemaining -= 100
+            whiteTimeRemaining -= delay
         }
     }
 
     fun decreaseBlackTime() {
         if (isWhiteMove || !isPlaying) return
         if (blackTimeRemaining > 0) {
-            blackTimeRemaining -= 100
+            blackTimeRemaining -= delay
         }
     }
 
