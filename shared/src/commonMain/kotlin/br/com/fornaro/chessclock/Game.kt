@@ -47,6 +47,7 @@ data class Game(
         if (!isWhiteMove || !isPlaying) return
         if (whiteTimeRemaining > 0) {
             whiteTimeRemaining -= delay
+            checkBlackWins()
         }
     }
 
@@ -54,6 +55,19 @@ data class Game(
         if (isWhiteMove || !isPlaying) return
         if (blackTimeRemaining > 0) {
             blackTimeRemaining -= delay
+            checkWhiteWins()
+        }
+    }
+
+    private fun checkBlackWins() {
+        if (whiteTimeRemaining <= 0) {
+            isPlaying = false
+        }
+    }
+
+    private fun checkWhiteWins() {
+        if (blackTimeRemaining <= 0) {
+            isPlaying = false
         }
     }
 
