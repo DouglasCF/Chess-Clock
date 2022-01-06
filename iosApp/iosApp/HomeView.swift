@@ -63,6 +63,15 @@ struct HomeView: View {
             IncrementalText(value: game.incrementTimeString)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .foregroundColor(.white)
+            
+            if game.isFinished {
+                VictoryText(isWinner: game.isWhiteWinner)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .rotationEffect(Angle(degrees: 180))
+                
+                VictoryText(isWinner: game.isBlackWinner)
+                    .frame(maxWidth: .infinity, alignment: .trailing)
+            }
         }
     }
 }

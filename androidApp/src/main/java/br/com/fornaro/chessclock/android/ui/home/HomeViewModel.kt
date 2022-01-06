@@ -9,24 +9,24 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor() : ViewModel() {
 
-    private var totalTime = 5 * 60L
-    private var incremental = 2L
+    private var totalTime = 1 * 60L
+    private var incrementalTime = 0L
 
-    private val _game: MutableStateFlow<Game> = MutableStateFlow(Game(totalTime, incremental))
+    private val _game: MutableStateFlow<Game> = MutableStateFlow(Game(totalTime, incrementalTime))
     val game get() = _game
 
     init {
-        startGame(totalTime, incremental)
+        startGame(totalTime, incrementalTime)
     }
 
-    fun startGame(startTime: Long = 5 * 60L, incremental: Long = 0L) {
-        this.totalTime = startTime
-        this.incremental = incremental
-        _game.value = Game(startTime, incremental)
+    fun startGame(totalTime: Long, incrementalTime: Long = 0L) {
+        this.totalTime = totalTime
+        this.incrementalTime = incrementalTime
+        _game.value = Game(totalTime, incrementalTime)
     }
 
     private fun updateGame(action: Game.() -> Unit = {}) {
-        _game.value = _game.value.copy(totalTime = totalTime, increment = incremental)
+        _game.value = _game.value.copy(totalTime = totalTime, increment = incrementalTime)
             .apply { action() }
     }
 

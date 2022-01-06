@@ -1,5 +1,6 @@
 package br.com.fornaro.chessclock.android.ui.home
 
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -18,6 +19,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
@@ -123,6 +125,15 @@ private fun Content(
             value = game.incrementTimeString,
             color = Color.White
         )
+
+        if (game.isFinished) {
+            VictoryText(
+                winner = game.isWhiteWinner,
+                modifier = Modifier.rotate(180f),
+                contentAlignment = Alignment.BottomStart
+            )
+            VictoryText(winner = game.isBlackWinner)
+        }
     }
 }
 
