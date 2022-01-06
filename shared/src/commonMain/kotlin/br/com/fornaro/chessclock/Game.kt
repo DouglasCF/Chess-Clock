@@ -51,6 +51,14 @@ data class Game(
         increment *= milliConst
     }
 
+    private fun initNewGame() {
+        blackTimeRemaining = totalTime
+        whiteTimeRemaining = totalTime
+        isPlaying = true
+        isWhiteMove = true
+        isFinished = false
+    }
+
     fun decreaseWhiteTime() {
         if (!isWhiteMove || !isPlaying) return
         if (whiteTimeRemaining > 0) {
@@ -89,8 +97,7 @@ data class Game(
     fun changePlayPause() {
         isPlaying = !isPlaying
         if (isWhiteWinner || isBlackWinner) {
-            whiteTimeRemaining = totalTime
-            blackTimeRemaining = totalTime
+            initNewGame()
         }
     }
 

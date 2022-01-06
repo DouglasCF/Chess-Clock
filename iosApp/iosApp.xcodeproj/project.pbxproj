@@ -11,7 +11,8 @@
 		058557D9273AAEEB004C7B11 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */; };
 		2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* iOSApp.swift */; };
 		984F935127849022009EC696 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984F935027849022009EC696 /* HomeViewModel.swift */; };
-		989B91162778A79100AFB8FE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989B91112778A79000AFB8FE /* ContentView.swift */; };
+		98869D2127872095000BD47C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98869D2027872095000BD47C /* ContentView.swift */; };
+		98869D23278720E7000BD47C /* VictoryText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98869D22278720E7000BD47C /* VictoryText.swift */; };
 		989B91182778A79100AFB8FE /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989B91132778A79000AFB8FE /* HomeView.swift */; };
 		989B91192778A79100AFB8FE /* TimeText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989B91142778A79100AFB8FE /* TimeText.swift */; };
 		989B911A2778A79100AFB8FE /* IncrementalText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989B91152778A79100AFB8FE /* IncrementalText.swift */; };
@@ -28,7 +29,8 @@
 		7555FF7B242A565900829871 /* iosApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		984F935027849022009EC696 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
-		989B91112778A79000AFB8FE /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContentView.swift; path = "../../../../Development/Chess Clock Test/Shared/ContentView.swift"; sourceTree = "<group>"; };
+		98869D2027872095000BD47C /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		98869D22278720E7000BD47C /* VictoryText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VictoryText.swift; sourceTree = "<group>"; };
 		989B91132778A79000AFB8FE /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		989B91142778A79100AFB8FE /* TimeText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeText.swift; sourceTree = "<group>"; };
 		989B91152778A79100AFB8FE /* IncrementalText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncrementalText.swift; sourceTree = "<group>"; };
@@ -75,7 +77,7 @@
 		7555FF7D242A565900829871 /* iosApp */ = {
 			isa = PBXGroup;
 			children = (
-				989B91112778A79000AFB8FE /* ContentView.swift */,
+				98869D2027872095000BD47C /* ContentView.swift */,
 				989B91132778A79000AFB8FE /* HomeView.swift */,
 				989B91152778A79100AFB8FE /* IncrementalText.swift */,
 				989B91142778A79100AFB8FE /* TimeText.swift */,
@@ -84,6 +86,7 @@
 				2152FB032600AC8F00CF470E /* iOSApp.swift */,
 				058557D7273AAEEB004C7B11 /* Preview Content */,
 				984F935027849022009EC696 /* HomeViewModel.swift */,
+				98869D22278720E7000BD47C /* VictoryText.swift */,
 			);
 			path = iosApp;
 			sourceTree = "<group>";
@@ -203,7 +206,8 @@
 			files = (
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
 				984F935127849022009EC696 /* HomeViewModel.swift in Sources */,
-				989B91162778A79100AFB8FE /* ContentView.swift in Sources */,
+				98869D2127872095000BD47C /* ContentView.swift in Sources */,
+				98869D23278720E7000BD47C /* VictoryText.swift in Sources */,
 				989B91192778A79100AFB8FE /* TimeText.swift in Sources */,
 				989B911A2778A79100AFB8FE /* IncrementalText.swift in Sources */,
 				989B91182778A79100AFB8FE /* HomeView.swift in Sources */,
