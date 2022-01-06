@@ -13,6 +13,14 @@ data class Game(
         const val delay = 100L
     }
 
+    var isFinished = false
+
+    val isWhiteWinner: Boolean
+        get() = blackTimeRemaining <= 0
+
+    val isBlackWinner: Boolean
+        get() = whiteTimeRemaining <= 0
+
     val whiteTimeRemainingString: String
         get() = stringFromTimeInterval(whiteTimeRemaining)
 
@@ -60,14 +68,16 @@ data class Game(
     }
 
     private fun checkBlackWins() {
-        if (whiteTimeRemaining <= 0) {
+        if (isBlackWinner) {
             isPlaying = false
+            isFinished = true
         }
     }
 
     private fun checkWhiteWins() {
-        if (blackTimeRemaining <= 0) {
+        if (isWhiteWinner) {
             isPlaying = false
+            isFinished = true
         }
     }
 
@@ -78,6 +88,10 @@ data class Game(
 
     fun changePlayPause() {
         isPlaying = !isPlaying
+        if (isWhiteWinner || isBlackWinner) {
+            whiteTimeRemaining = totalTime
+            blackTimeRemaining = totalTime
+        }
     }
 
     fun onWhitePressedClock() {
