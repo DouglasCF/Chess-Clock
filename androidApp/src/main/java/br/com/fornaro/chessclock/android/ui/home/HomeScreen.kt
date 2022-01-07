@@ -92,11 +92,13 @@ private fun Content(
                     .padding(Dimens.default),
                 horizontalArrangement = Arrangement.SpaceAround
             ) {
-                OutlinedButton(
-                    colors = ButtonDefaults.outlinedButtonColors(backgroundColor = Color.Gray),
-                    onClick = onSettingsClicked
-                ) {
-                    Image(imageVector = Icons.Default.Settings, contentDescription = null)
+                if (!game.isPlaying) {
+                    OutlinedButton(
+                        colors = ButtonDefaults.outlinedButtonColors(backgroundColor = Color.Gray),
+                        onClick = onSettingsClicked
+                    ) {
+                        Image(imageVector = Icons.Default.Settings, contentDescription = null)
+                    }
                 }
                 OutlinedButton(
                     colors = ButtonDefaults.outlinedButtonColors(backgroundColor = Color.Gray),
