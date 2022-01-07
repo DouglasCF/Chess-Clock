@@ -14,6 +14,7 @@
 		98869D2127872095000BD47C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98869D2027872095000BD47C /* ContentView.swift */; };
 		98869D23278720E7000BD47C /* VictoryText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98869D22278720E7000BD47C /* VictoryText.swift */; };
 		9898D2772787506D00490215 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9898D2762787506C00490215 /* SettingsView.swift */; };
+		9898D2792787550C00490215 /* GameModeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9898D2782787550C00490215 /* GameModeItem.swift */; };
 		989B91182778A79100AFB8FE /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989B91132778A79000AFB8FE /* HomeView.swift */; };
 		989B91192778A79100AFB8FE /* TimeText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989B91142778A79100AFB8FE /* TimeText.swift */; };
 		989B911A2778A79100AFB8FE /* IncrementalText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989B91152778A79100AFB8FE /* IncrementalText.swift */; };
@@ -33,6 +34,7 @@
 		98869D2027872095000BD47C /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		98869D22278720E7000BD47C /* VictoryText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VictoryText.swift; sourceTree = "<group>"; };
 		9898D2762787506C00490215 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		9898D2782787550C00490215 /* GameModeItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModeItem.swift; sourceTree = "<group>"; };
 		989B91132778A79000AFB8FE /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		989B91142778A79100AFB8FE /* TimeText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeText.swift; sourceTree = "<group>"; };
 		989B91152778A79100AFB8FE /* IncrementalText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncrementalText.swift; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				9898D2762787506C00490215 /* SettingsView.swift */,
+				9898D2782787550C00490215 /* GameModeItem.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -231,6 +234,7 @@
 				989B91192778A79100AFB8FE /* TimeText.swift in Sources */,
 				989B911A2778A79100AFB8FE /* IncrementalText.swift in Sources */,
 				989B91182778A79100AFB8FE /* HomeView.swift in Sources */,
+				9898D2792787550C00490215 /* GameModeItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
