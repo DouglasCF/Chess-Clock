@@ -7,7 +7,9 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor() : ViewModel() {
+class HomeViewModel @Inject constructor(
+    private val navigation: HomeNavigation
+) : ViewModel() {
 
     private var totalTime = 1 * 60L
     private var incrementalTime = 0L
@@ -40,4 +42,7 @@ class HomeViewModel @Inject constructor() : ViewModel() {
 
     fun decreaseBlackTime() = updateGame { decreaseBlackTime() }
 
+    fun onSettingsClicked() {
+        navigation.settings()
+    }
 }

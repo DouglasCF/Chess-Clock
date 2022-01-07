@@ -2,13 +2,23 @@ package br.com.fornaro.chessclock.android.navigation
 
 import androidx.navigation.NavHostController
 import br.com.fornaro.chessclock.android.ui.home.HomeNavigation
-import javax.inject.Inject
+import br.com.fornaro.chessclock.android.ui.settings.SettingsNavigation
+import java.lang.ref.WeakReference
 
-class NavigationManager @Inject constructor(
-    private val navHostController: NavHostController
-) : BackNavigation, HomeNavigation {
+object NavigationManager : SetupNavigation, BackNavigation, HomeNavigation, SettingsNavigation {
+
+    private lateinit var navHostController: WeakReference<NavHostController>
+    private val navController get() = navHostController.get()!!
+
+    override fun init(navController: NavHostController) {
+        this.navHostController = WeakReference(navController)
+    }
 
     override fun back() {
-        navHostController.navigateUp()
+        navController.navigateUp()
+    }
+
+    override fun settings() {
+        navController.navigate(NavigationScreen.Settings.route)
     }
 }

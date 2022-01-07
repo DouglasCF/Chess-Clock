@@ -5,9 +5,9 @@ import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
 
 private val ColorPalette = lightColors(
-    primary = Red200,
-    primaryVariant = Red500,
-    secondary = Teal200
+    primary = PrimaryColor,
+    primaryVariant = PrimaryColor,
+    secondary = SecondaryColor
 
     /* Other default colors to override
     background = Color.White,

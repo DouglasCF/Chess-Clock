@@ -1,6 +1,5 @@
 package br.com.fornaro.chessclock.android.ui.home
 
-import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -64,6 +63,7 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
         changePlayPause = viewModel::changePlayPause,
         onWhitePressedClock = viewModel::onWhitePressedClock,
         onBlackPressedClock = viewModel::onBlackPressedClock,
+        onSettingsClicked = viewModel::onSettingsClicked,
     )
 }
 
@@ -73,6 +73,7 @@ private fun Content(
     changePlayPause: () -> Unit = {},
     onWhitePressedClock: () -> Unit = {},
     onBlackPressedClock: () -> Unit = {},
+    onSettingsClicked: () -> Unit = {},
 ) {
     Box {
         Column {
@@ -93,7 +94,8 @@ private fun Content(
             ) {
                 OutlinedButton(
                     colors = ButtonDefaults.outlinedButtonColors(backgroundColor = Color.Gray),
-                    onClick = { /*TODO*/ }) {
+                    onClick = onSettingsClicked
+                ) {
                     Image(imageVector = Icons.Default.Settings, contentDescription = null)
                 }
                 OutlinedButton(
@@ -140,5 +142,5 @@ private fun Content(
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun ComposablePreview() {
-    Content(Game(5 * 60))
+    Content(Game(5 * 60L))
 }

@@ -13,6 +13,8 @@
 		984F935127849022009EC696 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984F935027849022009EC696 /* HomeViewModel.swift */; };
 		98869D2127872095000BD47C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98869D2027872095000BD47C /* ContentView.swift */; };
 		98869D23278720E7000BD47C /* VictoryText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98869D22278720E7000BD47C /* VictoryText.swift */; };
+		9898D2772787506D00490215 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9898D2762787506C00490215 /* SettingsView.swift */; };
+		9898D2792787550C00490215 /* GameModeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9898D2782787550C00490215 /* GameModeItem.swift */; };
 		989B91182778A79100AFB8FE /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989B91132778A79000AFB8FE /* HomeView.swift */; };
 		989B91192778A79100AFB8FE /* TimeText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989B91142778A79100AFB8FE /* TimeText.swift */; };
 		989B911A2778A79100AFB8FE /* IncrementalText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989B91152778A79100AFB8FE /* IncrementalText.swift */; };
@@ -31,6 +33,8 @@
 		984F935027849022009EC696 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		98869D2027872095000BD47C /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		98869D22278720E7000BD47C /* VictoryText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VictoryText.swift; sourceTree = "<group>"; };
+		9898D2762787506C00490215 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		9898D2782787550C00490215 /* GameModeItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModeItem.swift; sourceTree = "<group>"; };
 		989B91132778A79000AFB8FE /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		989B91142778A79100AFB8FE /* TimeText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeText.swift; sourceTree = "<group>"; };
 		989B91152778A79100AFB8FE /* IncrementalText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncrementalText.swift; sourceTree = "<group>"; };
@@ -77,16 +81,13 @@
 		7555FF7D242A565900829871 /* iosApp */ = {
 			isa = PBXGroup;
 			children = (
+				9898D2752787503500490215 /* Settings */,
+				9898D2742787501D00490215 /* Home */,
 				98869D2027872095000BD47C /* ContentView.swift */,
-				989B91132778A79000AFB8FE /* HomeView.swift */,
-				989B91152778A79100AFB8FE /* IncrementalText.swift */,
-				989B91142778A79100AFB8FE /* TimeText.swift */,
 				058557BA273AAA24004C7B11 /* Assets.xcassets */,
 				7555FF8C242A565B00829871 /* Info.plist */,
 				2152FB032600AC8F00CF470E /* iOSApp.swift */,
 				058557D7273AAEEB004C7B11 /* Preview Content */,
-				984F935027849022009EC696 /* HomeViewModel.swift */,
-				98869D22278720E7000BD47C /* VictoryText.swift */,
 			);
 			path = iosApp;
 			sourceTree = "<group>";
@@ -98,6 +99,27 @@
 				6888E943277AC82A5A97ACF9 /* Pods-iosApp.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		9898D2742787501D00490215 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				989B91132778A79000AFB8FE /* HomeView.swift */,
+				989B91142778A79100AFB8FE /* TimeText.swift */,
+				989B91152778A79100AFB8FE /* IncrementalText.swift */,
+				984F935027849022009EC696 /* HomeViewModel.swift */,
+				98869D22278720E7000BD47C /* VictoryText.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		9898D2752787503500490215 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				9898D2762787506C00490215 /* SettingsView.swift */,
+				9898D2782787550C00490215 /* GameModeItem.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		9BC950839A328D513E920251 /* Frameworks */ = {
@@ -205,12 +227,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
+				9898D2772787506D00490215 /* SettingsView.swift in Sources */,
 				984F935127849022009EC696 /* HomeViewModel.swift in Sources */,
 				98869D2127872095000BD47C /* ContentView.swift in Sources */,
 				98869D23278720E7000BD47C /* VictoryText.swift in Sources */,
 				989B91192778A79100AFB8FE /* TimeText.swift in Sources */,
 				989B911A2778A79100AFB8FE /* IncrementalText.swift in Sources */,
 				989B91182778A79100AFB8FE /* HomeView.swift in Sources */,
+				9898D2792787550C00490215 /* GameModeItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

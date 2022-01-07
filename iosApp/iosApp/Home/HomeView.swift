@@ -7,6 +7,8 @@ struct HomeView: View {
     let whiteTimer = Timer.publish(every: 1/10, on: .main, in: .common).autoconnect()
     let blackTimer = Timer.publish(every: 1/10, on: .main, in: .common).autoconnect()
     
+    @State var shouldShowSettings = false
+    
     var body: some View {
         let game = homeViewModel.game
         
@@ -26,11 +28,19 @@ struct HomeView: View {
                 HStack {
                     Spacer()
                     
-                    Image(systemName: "gearshape.fill")
-                        .resizable()
-                        .frame(width: 30, height: 30)
+                    Button(action: { shouldShowSettings = true }) {
+                        Image(systemName: "gearshape.fill")
+                            .resizable()
+                            .frame(width: 30, height: 30)
+                    }
+                    .buttonStyle(PlainButtonStyle())
                     
                     Spacer()
+                    
+                    NavigationLink(destination: SettingsView(), isActive: $shouldShowSettings) {
+                        EmptyView()
+                    }
+                    .navigationBarHidden(true)
                     
                     Button(action: { homeViewModel.changePlayPause() }) {
                         Image(systemName: game.isPlaying ? "pause.fill" : "play.fill")
