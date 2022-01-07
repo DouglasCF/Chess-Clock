@@ -28,19 +28,21 @@ struct HomeView: View {
                 HStack {
                     Spacer()
                     
-                    Button(action: { shouldShowSettings = true }) {
-                        Image(systemName: "gearshape.fill")
-                            .resizable()
-                            .frame(width: 30, height: 30)
-                    }
-                    .buttonStyle(PlainButtonStyle())
-                    
-                    Spacer()
-                    
                     NavigationLink(destination: SettingsView(), isActive: $shouldShowSettings) {
                         EmptyView()
                     }
                     .navigationBarHidden(true)
+                    
+                    if !game.isPlaying {
+                        Button(action: { shouldShowSettings = true }) {
+                            Image(systemName: "gearshape.fill")
+                                .resizable()
+                                .frame(width: 30, height: 30)
+                        }
+                        .buttonStyle(PlainButtonStyle())
+                        
+                        Spacer()
+                    }
                     
                     Button(action: { homeViewModel.changePlayPause() }) {
                         Image(systemName: game.isPlaying ? "pause.fill" : "play.fill")
