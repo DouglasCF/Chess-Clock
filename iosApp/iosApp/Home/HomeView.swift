@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct HomeView: View {
-    @ObservedObject var homeViewModel = HomeViewModel()
+    @EnvironmentObject var homeViewModel: HomeViewModel
     let minHeight = CGFloat(80)
     
     let whiteTimer = Timer.publish(every: 1/10, on: .main, in: .common).autoconnect()
