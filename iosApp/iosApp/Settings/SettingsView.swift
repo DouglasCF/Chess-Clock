@@ -1,7 +1,11 @@
 import SwiftUI
 
 struct SettingsView: View {
+    @EnvironmentObject private var settingsViewModel: SettingsViewModel
+    
     var body: some View {
+        let gameModes = settingsViewModel.gameModes
+        
         HStack {
             VStack(alignment: .leading) {
                 Text("Game Mode")
@@ -10,16 +14,11 @@ struct SettingsView: View {
                 
                 ScrollView(.horizontal, showsIndicators: false) {
                     LazyHStack(spacing: 12) {
-                        Spacer()
-                        GameModeItem(title: "2 | 1")
-                        GameModeItem(title: "5 min")
-                        GameModeItem(title: "10 | 10")
-                        GameModeItem(title: "2 | 1")
-                        GameModeItem(title: "5 min")
-                        GameModeItem(title: "10 | 10")
-                        GameModeItem(title: "2 | 1")
-                        GameModeItem(title: "5 min")
-                        GameModeItem(title: "10 | 10")
+                        ForEach(gameModes.indices, id: \.self) { index in
+                            GameModeItem(gameMode: gameModes[index]) {
+                                settingsViewModel.onGameModeButtonClicked(index: Int32(index))
+                            }
+                        }
                     }
                 }
                 .frame(height: 70)

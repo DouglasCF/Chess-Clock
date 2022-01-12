@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.Scaffold
@@ -12,18 +13,29 @@ import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import br.com.fornaro.chessclock.android.theme.Dimens
+import br.com.fornaro.chessclock.model.GameMode
 
 @Composable
 fun SettingsScreen(viewModel: SettingsViewModel = hiltViewModel()) {
+
+    val gameModes by viewModel.gameModes.collectAsState(emptyList())
+
     Scaffold(
         topBar = { TopBar(backAction = viewModel::onBackButtonClicked) },
-        content = { Content() }
+        content = {
+            Content(
+                gameModes = gameModes,
+                gameModeClickAction = viewModel::onGameModeButtonClicked
+            )
+        }
     )
 }
 
@@ -42,7 +54,10 @@ fun TopBar(
 )
 
 @Composable
-fun Content() = Column {
+fun Content(
+    gameModes: List<GameMode>,
+    gameModeClickAction: (Int) -> Unit,
+) = Column {
     Text(
         text = "Game Mode",
         color = Color.Black,
@@ -54,10 +69,11 @@ fun Content() = Column {
     LazyRow(
         contentPadding = PaddingValues(start = 8.dp, end = 8.dp)
     ) {
-        item {
-            GameModeItem(text = "1 min")
-            GameModeItem(text = "5 min")
-            GameModeItem(text = "10 min")
+        itemsIndexed(gameModes) { index, gameMode ->
+            GameModeItem(
+                gameMode = gameMode,
+                clickAction = { gameModeClickAction(index) }
+            )
         }
     }
 }

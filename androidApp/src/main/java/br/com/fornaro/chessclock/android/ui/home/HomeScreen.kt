@@ -13,6 +13,7 @@ import androidx.compose.material.OutlinedButton
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Pause
 import androidx.compose.material.icons.filled.PlayArrow
+import androidx.compose.material.icons.filled.Replay
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -64,6 +65,7 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
         onWhitePressedClock = viewModel::onWhitePressedClock,
         onBlackPressedClock = viewModel::onBlackPressedClock,
         onSettingsClicked = viewModel::onSettingsClicked,
+        onRestartGameClicked = viewModel::startGame
     )
 }
 
@@ -74,6 +76,7 @@ private fun Content(
     onWhitePressedClock: () -> Unit = {},
     onBlackPressedClock: () -> Unit = {},
     onSettingsClicked: () -> Unit = {},
+    onRestartGameClicked: () -> Unit = {},
 ) {
     Box {
         Column {
@@ -107,6 +110,15 @@ private fun Content(
                         imageVector = if (game.isPlaying) Icons.Default.Pause else Icons.Default.PlayArrow,
                         contentDescription = null
                     )
+                }
+
+                if (!game.isPlaying) {
+                    OutlinedButton(
+                        colors = ButtonDefaults.outlinedButtonColors(backgroundColor = Color.Gray),
+                        onClick = onRestartGameClicked
+                    ) {
+                        Image(imageVector = Icons.Default.Replay, contentDescription = null)
+                    }
                 }
             }
 

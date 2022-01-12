@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct HomeView: View {
-    @ObservedObject var homeViewModel = HomeViewModel()
+    @EnvironmentObject private var homeViewModel: HomeViewModel
     let minHeight = CGFloat(80)
     
     let whiteTimer = Timer.publish(every: 1/10, on: .main, in: .common).autoconnect()
@@ -27,7 +27,6 @@ struct HomeView: View {
                 
                 HStack {
                     Spacer()
-                    
                     NavigationLink(destination: SettingsView(), isActive: $shouldShowSettings) {
                         EmptyView()
                     }
@@ -51,6 +50,15 @@ struct HomeView: View {
                     }
                     .buttonStyle(PlainButtonStyle())
                     
+                    if !game.isPlaying {
+                        Spacer()
+                        Button(action: { homeViewModel.restartGame() }) {
+                            Image(systemName: "gobackward")
+                                .resizable()
+                                .frame(width: 30, height: 30)
+                        }
+                        .buttonStyle(PlainButtonStyle())
+                    }
                     Spacer()
                 }
                 .frame(height: minHeight)
