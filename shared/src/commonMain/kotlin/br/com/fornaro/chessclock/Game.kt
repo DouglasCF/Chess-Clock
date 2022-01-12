@@ -5,11 +5,11 @@ data class Game(
     var increment: Long = 0,
     var isPlaying: Boolean = false,
     var isWhiteMove: Boolean = true,
-    var whiteTimeRemaining: Long = totalTime * milliConst,
-    var blackTimeRemaining: Long = totalTime * milliConst,
+    var whiteTimeRemaining: Long = totalTime,
+    var blackTimeRemaining: Long = totalTime,
 ) {
     companion object {
-        private const val milliConst = 1000L
+        const val milliConst = 1000L
         const val delay = 100L
     }
 
@@ -44,11 +44,6 @@ data class Game(
                     seconds.toString().padStart(2, '0')
             else -> seconds.toString().padStart(2, '0')
         }
-    }
-
-    init {
-        totalTime *= milliConst
-        increment *= milliConst
     }
 
     private fun initNewGame() {

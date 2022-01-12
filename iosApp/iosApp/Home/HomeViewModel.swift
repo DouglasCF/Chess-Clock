@@ -2,7 +2,7 @@ import shared
 
 class HomeViewModel: ObservableObject {
     
-    @Published private(set) var game: Game = Game(totalTime: 5*60, increment: 2, isPlaying: false, isWhiteMove: true, whiteTimeRemaining:5*60*1000, blackTimeRemaining: 5*60*1000)
+    @Published private(set) var game: Game = Game(totalTime: 5*60*1000, increment: 0, isPlaying: false, isWhiteMove: true, whiteTimeRemaining:5*60*1000, blackTimeRemaining: 5*60*1000)
     
     var gameMode: GameMode?
     
@@ -52,6 +52,6 @@ class HomeViewModel: ObservableObject {
     
     func restartGame() {
         guard let gameMode = self.gameMode else { return }
-        game = Game(totalTime: gameMode.time*60*1000, increment: gameMode.increment, isPlaying: false, isWhiteMove: true, whiteTimeRemaining: gameMode.time*60*1000, blackTimeRemaining: gameMode.time*60*1000)
+        game = Game(totalTime: gameMode.time*60*1000, increment: gameMode.increment*1000, isPlaying: false, isWhiteMove: true, whiteTimeRemaining: gameMode.time*60*1000, blackTimeRemaining: gameMode.time*60*1000)
     }
 }
