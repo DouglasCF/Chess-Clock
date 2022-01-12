@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct SettingsView: View {
-    @EnvironmentObject var settingsViewModel: SettingsViewModel
+    @EnvironmentObject private var settingsViewModel: SettingsViewModel
     
     var body: some View {
         let gameModes = settingsViewModel.gameModes

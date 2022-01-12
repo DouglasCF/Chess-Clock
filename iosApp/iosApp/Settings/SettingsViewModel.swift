@@ -2,12 +2,13 @@ import Foundation
 import shared
 
 class SettingsViewModel: ObservableObject {
-    private let gameModeRepository = GameModeRepository()
     
     @Published private(set) var gameModes: [GameMode] = []
     
-    init() {
-        gameModeRepository.gameModes.collect(
+    private let gameModeRepository: GameModeRepository
+    init(gameModeRepository: GameModeRepository) {
+        self.gameModeRepository = gameModeRepository
+        self.gameModeRepository.gameModes.collect(
             collector: Collector<[GameMode]>() { gameModes in self.gameModes = gameModes }
         ) { result, error in print("compleion") }
     }

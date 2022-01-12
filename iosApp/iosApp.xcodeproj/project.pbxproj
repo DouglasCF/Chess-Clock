@@ -21,6 +21,7 @@
 		989B91182778A79100AFB8FE /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989B91132778A79000AFB8FE /* HomeView.swift */; };
 		989B91192778A79100AFB8FE /* TimeText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989B91142778A79100AFB8FE /* TimeText.swift */; };
 		989B911A2778A79100AFB8FE /* IncrementalText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989B91152778A79100AFB8FE /* IncrementalText.swift */; };
+		98F7B4B2278EFFC6001E6770 /* ViewModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F7B4B1278EFFC6001E6770 /* ViewModelFactory.swift */; };
 		E2E2582765E0B9728957F9A9 /* Pods_iosApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3607ADBA657FB0CBE06C6E03 /* Pods_iosApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -44,6 +45,7 @@
 		989B91132778A79000AFB8FE /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		989B91142778A79100AFB8FE /* TimeText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeText.swift; sourceTree = "<group>"; };
 		989B91152778A79100AFB8FE /* IncrementalText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncrementalText.swift; sourceTree = "<group>"; };
+		98F7B4B1278EFFC6001E6770 /* ViewModelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelFactory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 				058557D7273AAEEB004C7B11 /* Preview Content */,
 				986361292788821000CA83E3 /* AppDelegate.swift */,
 				982955BD278C9D2600B37A17 /* Collector.swift */,
+				98F7B4B1278EFFC6001E6770 /* ViewModelFactory.swift */,
 			);
 			path = iosApp;
 			sourceTree = "<group>";
@@ -236,6 +239,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
+				98F7B4B2278EFFC6001E6770 /* ViewModelFactory.swift in Sources */,
 				9898D2772787506D00490215 /* SettingsView.swift in Sources */,
 				984F935127849022009EC696 /* HomeViewModel.swift in Sources */,
 				98869D2127872095000BD47C /* ContentView.swift in Sources */,
