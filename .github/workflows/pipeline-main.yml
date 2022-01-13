@@ -13,17 +13,31 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+        
       - name: Setup JDK
         uses: actions/setup-java@v1
         with:
           java-version: 11
+          
       - name: Build AAB
-        run: bash ./gradlew bundle assemble --stacktrace
+        run: bash ./gradlew bundleRelease
+        
+      - name: Sign AAB
+        id: sign_app
+        uses: r0adkll/sign-android-release@v1
+        with:
+          releaseDirectory: androidApp/build/outputs/bundle/release
+          signingKeyBase64: ${{ secrets.SIGNINGKEYBASE64 }}
+          alias: ${{ secrets.ALIAS }}
+          keyStorePassword: ${{ secrets.KEYSTOREPASSWORD }}
+          keyPassword: ${{ secrets.KEYPASSWORD }}
+
       - name: Upload AAB
         uses: actions/upload-artifact@v1
         with:
           name: aab
-          path: androidApp/build/outputs/bundle/
+          path: ${{steps.sign_app.outputs.signedReleaseFile}}
+          
   upload:
     name: Upload AAB
     needs: aab
@@ -50,14 +64,4 @@ jobs:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: aab/release/androidApp-release.aab
           asset_name: app-release-${{ github.run_number }}.aab
-          asset_content_type: application/zip
-      - name: Upload Debug AAB
-        id: upload_debug_asset
-        uses: actions/upload-release-asset@v1.0.1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: aab/debug/androidApp-debug.aab
-          asset_name: app-debug-${{ github.run_number }}.aab
           asset_content_type: application/zip
