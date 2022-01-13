@@ -1,17 +1,37 @@
 plugins {
     id("com.android.application")
+    id("dagger.hilt.android.plugin")
     kotlin("android")
+    kotlin("kapt")
 }
 
 android {
-    compileSdk = 31
+    compileSdk = Versions.compileSdk
     defaultConfig {
         applicationId = "br.com.fornaro.chessclock.android"
-        minSdk = 23
-        targetSdk = 31
+        minSdk = Versions.minSdk
+        targetSdk = Versions.targetSdk
         versionCode = 1
         versionName = "1.0"
     }
+
+    buildFeatures {
+
+        compose = true
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = Versions.compose
+    }
+
     buildTypes {
         getByName("release") {
             isMinifyEnabled = false
@@ -21,7 +41,24 @@ android {
 
 dependencies {
     implementation(project(":shared"))
-    implementation("com.google.android.material:material:1.4.0")
-    implementation("androidx.appcompat:appcompat:1.3.1")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.0")
+
+    // AndroidX
+    implementation(Dependencies.appCompat)
+
+    // Compose
+    implementation(Dependencies.composeUiTooling)
+    implementation(Dependencies.composeMaterial)
+    implementation(Dependencies.composeIcons)
+    implementation(Dependencies.composeIconsExtended)
+
+    // Compose and others
+    implementation(Dependencies.composeActivity)
+    implementation(Dependencies.composeNavigation)
+    implementation(Dependencies.composeHiltNavigation)
+
+    // Hilt
+    implementation(Dependencies.hiltAndroid)
+    implementation(Dependencies.hiltViewModel)
+    kapt(Dependencies.hiltDaggerCompiler)
+    kapt(Dependencies.hiltCompiler)
 }

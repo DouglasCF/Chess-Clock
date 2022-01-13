@@ -1,11 +1,14 @@
 import SwiftUI
-import shared
 
 struct ContentView: View {
-	let greet = Greeting().greeting()
-
+    let viewModelFactory = ViewModelFactory()
+    
 	var body: some View {
-		Text(greet)
+        NavigationView {
+            HomeView()
+        }
+        .environmentObject(viewModelFactory.makeHomeViewModel())
+        .environmentObject(viewModelFactory.makeSettingsViewModel())
 	}
 }
 

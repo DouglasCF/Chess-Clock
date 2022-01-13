@@ -21,9 +21,13 @@ kotlin {
             baseName = "shared"
         }
     }
-    
+
     sourceSets {
-        val commonMain by getting
+        val commonMain by getting {
+            dependencies {
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.0")
+            }
+        }
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test-common"))
@@ -59,10 +63,10 @@ kotlin {
 }
 
 android {
-    compileSdk = 31
+    compileSdk = Versions.compileSdk
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
     defaultConfig {
-        minSdk = 23
-        targetSdk = 31
+        minSdk = Versions.minSdk
+        targetSdk = Versions.targetSdk
     }
 }
