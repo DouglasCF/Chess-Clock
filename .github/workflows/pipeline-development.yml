@@ -13,18 +13,21 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+
       - name: Setup JDK
         uses: actions/setup-java@v1
         with:
           java-version: 11
+
       - name: Build AAB
         run: bash ./gradlew bundleDebug --stacktrace
+
       - name: Upload AAB
         uses: actions/upload-artifact@v1
         with:
           name: aab
           path: androidApp/build/outputs/bundle/debug/androidApp-debug.aab
-          
+
   upload:
     name: Upload AAB
     needs: build
