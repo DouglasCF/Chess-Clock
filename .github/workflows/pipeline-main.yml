@@ -13,15 +13,21 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-        
+
       - name: Setup JDK
         uses: actions/setup-java@v1
         with:
           java-version: 11
-          
+
+      - name: Bump version
+        uses: chkfung/android-version-actions@v1.1
+        with:
+          gradlePath: androidApp/build.gradle.kts # or app/build.gradle.kts
+          versionCode: ${{github.run_number}}
+
       - name: Build AAB
         run: bash ./gradlew bundleRelease
-        
+
       - name: Sign AAB
         id: sign_app
         uses: r0adkll/sign-android-release@v1
@@ -37,7 +43,7 @@ jobs:
         with:
           name: aab
           path: ${{steps.sign_app.outputs.signedReleaseFile}}
-          
+
   upload:
     name: Upload AAB
     needs: aab
@@ -51,7 +57,7 @@ jobs:
         id: create_release
         uses: actions/create-release@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: r${{ github.run_number }}
           release_name: r${{ github.run_number }}
