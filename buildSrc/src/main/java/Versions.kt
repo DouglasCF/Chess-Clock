@@ -3,7 +3,7 @@ object Versions {
     const val targetSdk = 31
     const val minSdk = 21
 
-    const val gradle = "7.0.4"
+    const val gradle = "7.1.1"
     const val kotlin = "1.5.31"
     const val compose = "1.0.5"
     const val hilt = "2.40.2"

@@ -12,11 +12,10 @@ android {
         minSdk = Versions.minSdk
         targetSdk = Versions.targetSdk
         versionCode = 1
-        versionName = "1.0"
+        versionName = "1.1"
     }
 
     buildFeatures {
-
         compose = true
     }
 
