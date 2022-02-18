@@ -1,5 +1,6 @@
 package br.com.fornaro.chessclock.android.ui.settings
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -86,6 +87,7 @@ fun Content(
     }
     Row(
         modifier = Modifier
+            .clickable { fullScreenClickAction() }
             .padding(horizontal = Dimens.default)
             .padding(top = Dimens.default)
     ) {
