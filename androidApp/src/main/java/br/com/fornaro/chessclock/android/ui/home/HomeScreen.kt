@@ -28,19 +28,23 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import br.com.fornaro.chessclock.Game
 import br.com.fornaro.chessclock.android.theme.Dimens
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 @Composable
 fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
+    viewModel.loadFullScreenGameMode()
+    val uiState by viewModel.uiState.collectAsState()
 
-    val game by viewModel.game.collectAsState()
+    val systemUiController = rememberSystemUiController()
+    systemUiController.isSystemBarsVisible = !uiState.fullScreen
 
     LaunchedEffect(LocalContext.current) {
         launch(Dispatchers.IO) {
             while (true) {
-                if (game.whiteTimeRemaining > 0 && game.isWhiteMove && game.isPlaying) {
+                if (uiState.game.whiteTimeRemaining > 0 && uiState.game.isWhiteMove && uiState.game.isPlaying) {
                     delay(Game.delay)
                     viewModel.decreaseWhiteTime()
                 }
@@ -51,7 +55,7 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
     LaunchedEffect(LocalContext.current) {
         launch(Dispatchers.IO) {
             while (true) {
-                if (game.blackTimeRemaining > 0 && !game.isWhiteMove && game.isPlaying) {
+                if (uiState.game.blackTimeRemaining > 0 && !uiState.game.isWhiteMove && uiState.game.isPlaying) {
                     delay(Game.delay)
                     viewModel.decreaseBlackTime()
                 }
@@ -60,7 +64,7 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
     }
 
     Content(
-        game = game,
+        game = uiState.game,
         changePlayPause = viewModel::changePlayPause,
         onWhitePressedClock = viewModel::onWhitePressedClock,
         onBlackPressedClock = viewModel::onBlackPressedClock,
