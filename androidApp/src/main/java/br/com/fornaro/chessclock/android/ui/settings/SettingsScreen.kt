@@ -24,6 +24,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import br.com.fornaro.chessclock.android.theme.Dimens
 import br.com.fornaro.chessclock.model.GameMode
@@ -67,15 +68,11 @@ fun Content(
     gameModeClickAction: (Int) -> Unit,
     fullScreenClickAction: () -> Unit,
 ) = Column {
-    Text(
-        text = "Game Mode",
-        color = Color.Black,
-        fontWeight = FontWeight.Bold,
-        modifier = Modifier
-            .padding(start = Dimens.default, top = Dimens.default),
-    )
+    SectionText(text = "Game Mode")
 
     LazyRow(
+        modifier = Modifier
+            .padding(top = Dimens.default),
         contentPadding = PaddingValues(start = 8.dp, end = 8.dp)
     ) {
         itemsIndexed(gameModes) { index, gameMode ->
@@ -85,6 +82,7 @@ fun Content(
             )
         }
     }
+    SectionText(text = "General")
     Row(
         modifier = Modifier
             .clickable { fullScreenClickAction() }
@@ -101,10 +99,19 @@ fun Content(
         Switch(
             checked = fullScreen,
             onCheckedChange = { fullScreenClickAction() },
-
-            )
+        )
     }
 }
+
+@Composable
+private fun SectionText(text: String) = Text(
+    text = text,
+    color = Color.Black,
+    fontWeight = FontWeight.Bold,
+    fontSize = 20.sp,
+    modifier = Modifier
+        .padding(start = Dimens.default, top = Dimens.default),
+)
 
 @Preview(showBackground = true)
 @Composable

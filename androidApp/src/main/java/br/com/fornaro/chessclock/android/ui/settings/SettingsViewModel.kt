@@ -4,9 +4,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import br.com.fornaro.chessclock.model.GameMode
 import br.com.fornaro.chessclock.repositories.GameModeRepository
+import br.com.fornaro.chessclock.usecases.GetFullScreenModeUseCase
+import br.com.fornaro.chessclock.usecases.ToggleFullScreenModeUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -14,6 +15,8 @@ import javax.inject.Inject
 class SettingsViewModel @Inject constructor(
     private val navigation: SettingsNavigation,
     private val gameModeRepository: GameModeRepository,
+    private val toggleFullScreenModeUseCase: ToggleFullScreenModeUseCase,
+    private val getFullScreenModeUseCase: GetFullScreenModeUseCase,
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(UiModel())
@@ -21,6 +24,7 @@ class SettingsViewModel @Inject constructor(
 
     init {
         observeGameModes()
+        loadFullScreenGameMode()
     }
 
     private fun observeGameModes() {
@@ -29,6 +33,11 @@ class SettingsViewModel @Inject constructor(
                 _uiState.value = uiState.value.copy(gameModes = it)
             }
         }
+    }
+
+    private fun loadFullScreenGameMode() {
+        val value = getFullScreenModeUseCase()
+        _uiState.value = uiState.value.copy(fullScreen = value)
     }
 
     fun onBackButtonClicked() {
@@ -40,9 +49,8 @@ class SettingsViewModel @Inject constructor(
     }
 
     fun onFullScreenOptionClicked() {
-        // persist option
-        _uiState.value = uiState.value.copy(fullScreen = !uiState.value.fullScreen)
-        // apply full screen option
+        toggleFullScreenModeUseCase()
+        loadFullScreenGameMode()
     }
 }
 
