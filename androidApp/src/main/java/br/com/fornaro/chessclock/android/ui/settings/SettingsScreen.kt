@@ -28,11 +28,15 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import br.com.fornaro.chessclock.android.theme.Dimens
 import br.com.fornaro.chessclock.model.GameMode
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 @Composable
 fun SettingsScreen(viewModel: SettingsViewModel = hiltViewModel()) {
 
     val uiState by viewModel.uiState.collectAsState()
+
+    val systemUiController = rememberSystemUiController()
+    systemUiController.isSystemBarsVisible = !uiState.fullScreen
 
     Scaffold(
         topBar = { TopBar(backAction = viewModel::onBackButtonClicked) },

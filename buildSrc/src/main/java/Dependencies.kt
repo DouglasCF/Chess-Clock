@@ -42,6 +42,9 @@ object Dependencies {
         composeCoil,
     )
 
+    // Accompanist
+    const val accompanist = "com.google.accompanist:accompanist-systemuicontroller:0.24.2-alpha"
+
     // Hilt
     const val hiltAndroid = "com.google.dagger:hilt-android:${Versions.hilt}"
     const val hiltDaggerCompiler = "com.google.dagger:hilt-compiler:${Versions.hilt}" // kapt

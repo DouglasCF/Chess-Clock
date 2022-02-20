@@ -55,6 +55,9 @@ dependencies {
     implementation(Dependencies.composeNavigation)
     implementation(Dependencies.composeHiltNavigation)
 
+    // Accompanist
+    implementation(Dependencies.accompanist)
+
     // Hilt
     implementation(Dependencies.hiltAndroid)
     implementation(Dependencies.hiltViewModel)
