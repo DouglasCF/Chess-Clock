@@ -2,7 +2,8 @@ package br.com.fornaro.chessclock.android.ui.settings
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import br.com.fornaro.chessclock.model.GameMode
+import br.com.fornaro.chessclock.android.data.local.mappers.GameModeMapperAlias
+import br.com.fornaro.chessclock.android.domain.models.GameModeModel
 import br.com.fornaro.chessclock.repositories.GameModeRepository
 import br.com.fornaro.chessclock.usecases.GetFullScreenModeUseCase
 import br.com.fornaro.chessclock.usecases.ToggleFullScreenModeUseCase
@@ -17,6 +18,7 @@ class SettingsViewModel @Inject constructor(
     private val gameModeRepository: GameModeRepository,
     private val toggleFullScreenModeUseCase: ToggleFullScreenModeUseCase,
     private val getFullScreenModeUseCase: GetFullScreenModeUseCase,
+    private val gameModeMapper: GameModeMapperAlias,
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(UiModel())
@@ -30,7 +32,8 @@ class SettingsViewModel @Inject constructor(
     private fun observeGameModes() {
         viewModelScope.launch {
             gameModeRepository.gameModes.collect {
-                _uiState.value = uiState.value.copy(gameModes = it)
+                _uiState.value = uiState.value
+                    .copy(gameModes = it.map { gameMode -> gameModeMapper.map(gameMode) })
             }
         }
     }
@@ -55,6 +58,6 @@ class SettingsViewModel @Inject constructor(
 }
 
 data class UiModel(
-    val gameModes: List<GameMode> = emptyList(),
+    val gameModes: List<GameModeModel> = emptyList(),
     val fullScreen: Boolean = false
 )

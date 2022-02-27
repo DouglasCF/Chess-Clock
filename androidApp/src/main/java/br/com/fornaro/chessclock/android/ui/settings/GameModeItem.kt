@@ -9,14 +9,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import br.com.fornaro.chessclock.android.domain.models.GameModeModel
 import br.com.fornaro.chessclock.android.theme.Dimens
 import br.com.fornaro.chessclock.android.theme.GameMode
 import br.com.fornaro.chessclock.android.theme.GameModeSelected
-import br.com.fornaro.chessclock.model.GameMode
 
 @Composable
 fun GameModeItem(
-    gameMode: GameMode,
+    gameMode: GameModeModel,
     clickAction: () -> Unit = {}
 ) {
     Text(
@@ -35,17 +35,17 @@ fun GameModeItem(
 @Preview
 @Composable
 fun ComposablePreview() {
-    GameModeItem(GameMode(1, 1, true))
+    GameModeItem(GameModeModel("1 min", true))
 }
 
 @Preview
 @Composable
 fun ComposablePreview2() {
-    GameModeItem(GameMode(1, 0, true))
+    GameModeItem(GameModeModel("1 min", false))
 }
 
 @Preview
 @Composable
 fun ComposablePreview3() {
-    GameModeItem(GameMode(1, 0))
+    GameModeItem(GameModeModel("1 | 5"))
 }
