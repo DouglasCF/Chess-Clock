@@ -26,8 +26,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import br.com.fornaro.chessclock.android.domain.models.GameModeModel
 import br.com.fornaro.chessclock.android.theme.Dimens
-import br.com.fornaro.chessclock.model.GameMode
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 @Composable
@@ -67,7 +67,7 @@ fun TopBar(
 
 @Composable
 fun Content(
-    gameModes: List<GameMode>,
+    gameModes: List<GameModeModel>,
     fullScreen: Boolean,
     gameModeClickAction: (Int) -> Unit,
     fullScreenClickAction: () -> Unit,
@@ -120,7 +120,7 @@ private fun SectionText(text: String) = Text(
 @Preview(showBackground = true)
 @Composable
 fun Preview() = Content(
-    gameModes = listOf(GameMode(1, 1, true), GameMode(2, 2, false)),
+    gameModes = listOf(GameModeModel("1 |  1", true), GameModeModel("2 | 2", false)),
     fullScreen = true,
     gameModeClickAction = {},
     fullScreenClickAction = {},
