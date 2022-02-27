@@ -4,9 +4,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import br.com.fornaro.chessclock.Game
 import br.com.fornaro.chessclock.repositories.GameModeRepository
+import br.com.fornaro.chessclock.usecases.GetFullScreenModeUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -15,17 +15,19 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     private val gameModeRepository: GameModeRepository,
     private val navigation: HomeNavigation,
+    private val getFullScreenModeUseCase: GetFullScreenModeUseCase,
 ) : ViewModel() {
 
     private var totalTime = 5 * 60L * Game.milliConst
     private var incrementalTime = 0L
 
-    private val _game: MutableStateFlow<Game> = MutableStateFlow(Game(totalTime, incrementalTime))
-    val game get() = _game
+    private val _uiState: MutableStateFlow<UiState> = MutableStateFlow(UiState())
+    val uiState get() = _uiState
 
     init {
         startGame(totalTime, incrementalTime)
         observeGameMode()
+        loadFullScreenGameMode()
     }
 
     private fun observeGameMode() {
@@ -37,15 +39,19 @@ class HomeViewModel @Inject constructor(
         }
     }
 
+     fun loadFullScreenGameMode() {
+        val value = getFullScreenModeUseCase()
+        _uiState.value = uiState.value.copy(fullScreen = value)
+    }
+
     fun startGame(totalTime: Long = this.totalTime, incrementalTime: Long = this.incrementalTime) {
         this.totalTime = totalTime
         this.incrementalTime = incrementalTime
-        _game.value = Game(totalTime, incrementalTime)
+        _uiState.value = uiState.value.copy(game = Game(totalTime, incrementalTime))
     }
 
     private fun updateGame(action: Game.() -> Unit = {}) {
-        _game.value = _game.value.copy()
-            .apply { action() }
+        _uiState.value = uiState.value.copy(game = uiState.value.game.copy().apply { action() })
     }
 
     fun changePlayPause() = updateGame { changePlayPause() }
@@ -62,3 +68,8 @@ class HomeViewModel @Inject constructor(
         navigation.settings()
     }
 }
+
+data class UiState(
+    val game: Game = Game(0, 0),
+    val fullScreen: Boolean = false
+)
