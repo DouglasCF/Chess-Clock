@@ -16,6 +16,8 @@
 		9863612A2788821000CA83E3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986361292788821000CA83E3 /* AppDelegate.swift */; };
 		98869D2127872095000BD47C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98869D2027872095000BD47C /* ContentView.swift */; };
 		98869D23278720E7000BD47C /* VictoryText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98869D22278720E7000BD47C /* VictoryText.swift */; };
+		9887CD7227CC0CDE00EA2153 /* GameModeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9887CD7127CC0CDE00EA2153 /* GameModeModel.swift */; };
+		9887CD7727CC10F100EA2153 /* GameModeMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9887CD7627CC10F100EA2153 /* GameModeMapper.swift */; };
 		9898D2772787506D00490215 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9898D2762787506C00490215 /* SettingsView.swift */; };
 		9898D2792787550C00490215 /* GameModeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9898D2782787550C00490215 /* GameModeItem.swift */; };
 		989B91182778A79100AFB8FE /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989B91132778A79000AFB8FE /* HomeView.swift */; };
@@ -40,6 +42,8 @@
 		986361292788821000CA83E3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		98869D2027872095000BD47C /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		98869D22278720E7000BD47C /* VictoryText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VictoryText.swift; sourceTree = "<group>"; };
+		9887CD7127CC0CDE00EA2153 /* GameModeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModeModel.swift; sourceTree = "<group>"; };
+		9887CD7627CC10F100EA2153 /* GameModeMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModeMapper.swift; sourceTree = "<group>"; };
 		9898D2762787506C00490215 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		9898D2782787550C00490215 /* GameModeItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModeItem.swift; sourceTree = "<group>"; };
 		989B91132778A79000AFB8FE /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -89,6 +93,8 @@
 		7555FF7D242A565900829871 /* iosApp */ = {
 			isa = PBXGroup;
 			children = (
+				9887CD7327CC10BD00EA2153 /* Data */,
+				9887CD6F27CC0CC400EA2153 /* Domain */,
 				9898D2752787503500490215 /* Settings */,
 				9898D2742787501D00490215 /* Home */,
 				98869D2027872095000BD47C /* ContentView.swift */,
@@ -110,6 +116,46 @@
 				6888E943277AC82A5A97ACF9 /* Pods-iosApp.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		9887CD6F27CC0CC400EA2153 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				9887CD7027CC0CCE00EA2153 /* Models */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		9887CD7027CC0CCE00EA2153 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				9887CD7127CC0CDE00EA2153 /* GameModeModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		9887CD7327CC10BD00EA2153 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				9887CD7427CC10CD00EA2153 /* Local */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		9887CD7427CC10CD00EA2153 /* Local */ = {
+			isa = PBXGroup;
+			children = (
+				9887CD7527CC10D400EA2153 /* Mapper */,
+			);
+			path = Local;
+			sourceTree = "<group>";
+		};
+		9887CD7527CC10D400EA2153 /* Mapper */ = {
+			isa = PBXGroup;
+			children = (
+				9887CD7627CC10F100EA2153 /* GameModeMapper.swift */,
+			);
+			path = Mapper;
 			sourceTree = "<group>";
 		};
 		9898D2742787501D00490215 /* Home */ = {
@@ -240,12 +286,14 @@
 			files = (
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
 				98F7B4B2278EFFC6001E6770 /* ViewModelFactory.swift in Sources */,
+				9887CD7727CC10F100EA2153 /* GameModeMapper.swift in Sources */,
 				9898D2772787506D00490215 /* SettingsView.swift in Sources */,
 				984F935127849022009EC696 /* HomeViewModel.swift in Sources */,
 				98869D2127872095000BD47C /* ContentView.swift in Sources */,
 				98869D23278720E7000BD47C /* VictoryText.swift in Sources */,
 				982955BE278C9D2600B37A17 /* Collector.swift in Sources */,
 				989B91192778A79100AFB8FE /* TimeText.swift in Sources */,
+				9887CD7227CC0CDE00EA2153 /* GameModeModel.swift in Sources */,
 				989B911A2778A79100AFB8FE /* IncrementalText.swift in Sources */,
 				989B91182778A79100AFB8FE /* HomeView.swift in Sources */,
 				982955BC278C977400B37A17 /* SettingsViewModel.swift in Sources */,

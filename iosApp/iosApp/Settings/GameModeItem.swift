@@ -2,7 +2,7 @@ import SwiftUI
 import shared
 
 struct GameModeItem: View {
-    var gameMode: GameMode
+    var gameMode: GameModeModel
     var action: () -> Void
     
     var body: some View {
@@ -18,6 +18,6 @@ struct GameModeItem: View {
 
 struct GameModeItem_Previews: PreviewProvider {
     static var previews: some View {
-        GameModeItem(gameMode: GameMode(time: 1, increment: 1, isSelected: true), action: {})
+        GameModeItem(gameMode: GameModeModel(text: "1 | 1", isSelected: true), action: {})
     }
 }
