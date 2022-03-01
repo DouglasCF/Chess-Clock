@@ -6,7 +6,23 @@ import kotlinx.coroutines.flow.MutableStateFlow
 class GameModeRepository {
 
     private var gameModesList =
-        mutableListOf(GameMode(1), GameMode(5, isSelected = true), GameMode(10, 10))
+        mutableListOf(
+            GameMode(1),
+            GameMode(1, 1),
+            GameMode(1, 2),
+            GameMode(3),
+            GameMode(3, 2),
+            GameMode(5, isSelected = true),
+            GameMode(5, 5),
+            GameMode(10),
+            GameMode(10, 10),
+            GameMode(15),
+            GameMode(15, 10),
+            GameMode(30),
+            GameMode(30, 10),
+            GameMode(45),
+            GameMode(45, 45),
+        )
 
     private val _gameModes = MutableStateFlow<List<GameMode>>(gameModesList)
     val gameModes get() = _gameModes
