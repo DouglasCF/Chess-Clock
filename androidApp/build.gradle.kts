@@ -35,10 +35,16 @@ android {
         getByName("release") {
             isShrinkResources = true
             isMinifyEnabled = true
+            isDebuggable = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android.txt"),
                 "proguard-rules.pro"
             )
+        }
+        getByName("debug") {
+            applicationIdSuffix = ".DEV"
+            versionNameSuffix = ".DEV"
+            isDebuggable = true
         }
     }
 }
