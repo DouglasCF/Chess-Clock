@@ -38,10 +38,10 @@ data class Game(
 
         return when {
             hours > 0 -> "${hours.toString().padStart(2, '0')}:" +
-                    "${minutes.toString().padStart(2, '0')}:" +
-                    seconds.toString().padStart(2, '0')
+                "${minutes.toString().padStart(2, '0')}:" +
+                seconds.toString().padStart(2, '0')
             minutes > 0 -> "${minutes.toString().padStart(2, '0')}:" +
-                    seconds.toString().padStart(2, '0')
+                seconds.toString().padStart(2, '0')
             else -> seconds.toString().padStart(2, '0')
         }
     }

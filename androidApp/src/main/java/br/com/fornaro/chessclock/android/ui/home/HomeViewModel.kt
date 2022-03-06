@@ -39,7 +39,7 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-     fun loadFullScreenGameMode() {
+    fun loadFullScreenGameMode() {
         val value = getFullScreenModeUseCase()
         _uiState.value = uiState.value.copy(fullScreen = value)
     }

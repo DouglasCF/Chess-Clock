@@ -109,7 +109,8 @@ private fun Content(
                 }
                 OutlinedButton(
                     colors = ButtonDefaults.outlinedButtonColors(backgroundColor = Color.Gray),
-                    onClick = { changePlayPause() }) {
+                    onClick = { changePlayPause() }
+                ) {
                     Image(
                         imageVector = if (game.isPlaying) Icons.Default.Pause else Icons.Default.PlayArrow,
                         contentDescription = null

@@ -21,6 +21,6 @@ jobs:
         with:
           java-version: 11
       - name: Ktlint check
-        run: ./gradlew ktlint
+        run: ./gradlew ktlintCheck
       - name: Unit tests
         run: ./gradlew test --stacktrace

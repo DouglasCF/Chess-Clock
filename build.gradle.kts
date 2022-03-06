@@ -1,5 +1,6 @@
 plugins {
     id("com.github.ben-manes.versions") version Versions.dependenciesUpdate
+    id(Dependencies.ktlintPlugin) version Versions.ktlint
 }
 
 buildscript {
@@ -16,6 +17,7 @@ buildscript {
 }
 
 allprojects {
+    apply(plugin = Dependencies.ktlintPlugin)
     repositories {
         google()
         mavenCentral()
