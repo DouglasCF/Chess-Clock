@@ -11,7 +11,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
 import br.com.fornaro.chessclock.android.theme.Dimens
 
@@ -30,7 +29,8 @@ fun TimeText(
             .fillMaxWidth()
             .clickable { onClickAction() }
             .padding(Dimens.default)
-            .then(modifier)) {
+            .then(modifier)
+    ) {
         Text(
             text = text,
             fontWeight = FontWeight.Black,
