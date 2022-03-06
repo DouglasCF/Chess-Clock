@@ -7,6 +7,7 @@ object Dependencies {
         "com.google.dagger:hilt-android-gradle-plugin:${Versions.hilt}"
     const val googleServicePlugin = "com.google.gms:google-services:4.3.10"
     const val dependenciesPlugin = "com.github.ben-manes.versions"
+    const val ktlintPlugin = "org.jlleitschuh.gradle.ktlint"
 
     // AndroidX
     const val appCompat = "androidx.appcompat:appcompat:1.4.1"

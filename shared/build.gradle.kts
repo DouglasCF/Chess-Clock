@@ -2,7 +2,7 @@ plugins {
     kotlin("multiplatform")
     kotlin("native.cocoapods")
     id("com.android.library")
-    id("org.jlleitschuh.gradle.ktlint")
+    id(Dependencies.ktlintPlugin)
 }
 
 version = "1.0"

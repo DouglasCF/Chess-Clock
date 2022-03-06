@@ -10,4 +10,5 @@ object Versions {
     const val coroutines = "1.5.2"
     const val dependenciesUpdate = "0.42.0"
     const val mockk = "1.12.1"
+    const val ktlint = "10.2.1"
 }
