@@ -3,10 +3,13 @@ package br.com.fornaro.chessclock.android.ui.settings
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import br.com.fornaro.chessclock.android.domain.models.GameModeModel
@@ -21,13 +24,16 @@ fun GameModeItem(
 ) {
     Text(
         text = gameMode.text,
+        textAlign = TextAlign.Center,
+        color = Color.White,
         modifier = Modifier
-            .clickable(onClick = clickAction)
             .padding(8.dp)
             .background(
                 if (gameMode.isSelected) GameModeSelected else GameMode,
                 RoundedCornerShape(100.dp)
             )
+            .widthIn(70.dp, 200.dp)
+            .clickable(onClick = clickAction)
             .padding(Dimens.default)
     )
 }

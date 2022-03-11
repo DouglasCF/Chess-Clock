@@ -4,9 +4,12 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Button
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.Scaffold
@@ -44,6 +47,8 @@ fun SettingsScreen(viewModel: SettingsViewModel = hiltViewModel()) {
             Content(
                 gameModes = uiState.gameModes,
                 gameModeClickAction = viewModel::onGameModeButtonClicked,
+                customGameModes = uiState.customGameModes,
+                customGameModeClickAction = viewModel::onCustomGameModeClicked,
                 fullScreen = uiState.fullScreen,
                 fullScreenClickAction = viewModel::onFullScreenOptionClicked,
             )
@@ -61,6 +66,7 @@ fun TopBar(
             Icon(Icons.Default.ArrowBack, contentDescription = "back")
         }
     },
+    backgroundColor = Color.White,
     contentColor = Color.Black,
     elevation = Dimens.noElevation,
 )
@@ -68,24 +74,28 @@ fun TopBar(
 @Composable
 fun Content(
     gameModes: List<GameModeModel>,
+    customGameModes: List<GameModeModel>,
     fullScreen: Boolean,
     gameModeClickAction: (Int) -> Unit,
+    customGameModeClickAction: (Int) -> Unit,
     fullScreenClickAction: () -> Unit,
-) = Column {
+) = Column(
+    horizontalAlignment = Alignment.CenterHorizontally,
+) {
     SectionText(text = "Game Mode")
-
-    LazyRow(
+    GameModeList(list = gameModes, clickAction = gameModeClickAction)
+    GameModeList(list = customGameModes, clickAction = customGameModeClickAction)
+    Button(
+        shape = RoundedCornerShape(8.dp),
         modifier = Modifier
             .padding(top = Dimens.default),
-        contentPadding = PaddingValues(start = 8.dp, end = 8.dp)
-    ) {
-        itemsIndexed(gameModes) { index, gameMode ->
-            GameModeItem(
-                gameMode = gameMode,
-                clickAction = { gameModeClickAction(index) }
-            )
-        }
+        onClick = { /*TODO*/ }) {
+        Text(
+            text = "Create custom game mode",
+            modifier = Modifier.padding(vertical = 8.dp)
+        )
     }
+
     SectionText(text = "General")
     Row(
         modifier = Modifier
@@ -108,12 +118,28 @@ fun Content(
 }
 
 @Composable
+private fun GameModeList(list: List<GameModeModel>, clickAction: (Int) -> Unit) = LazyRow(
+    modifier = Modifier
+        .fillMaxWidth()
+        .padding(top = Dimens.default),
+    contentPadding = PaddingValues(start = 8.dp, end = 8.dp)
+) {
+    itemsIndexed(list) { index, gameMode ->
+        GameModeItem(
+            gameMode = gameMode,
+            clickAction = { clickAction(index) }
+        )
+    }
+}
+
+@Composable
 private fun SectionText(text: String) = Text(
     text = text,
     color = Color.Black,
     fontWeight = FontWeight.Bold,
     fontSize = 20.sp,
     modifier = Modifier
+        .fillMaxWidth()
         .padding(start = Dimens.default, top = Dimens.default),
 )
 
@@ -121,7 +147,9 @@ private fun SectionText(text: String) = Text(
 @Composable
 fun Preview() = Content(
     gameModes = listOf(GameModeModel("1 |  1", true), GameModeModel("2 | 2", false)),
+    customGameModes = listOf(GameModeModel("1")),
     fullScreen = true,
     gameModeClickAction = {},
+    customGameModeClickAction = {},
     fullScreenClickAction = {},
 )

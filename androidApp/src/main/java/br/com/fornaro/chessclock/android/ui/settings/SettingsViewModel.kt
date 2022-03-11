@@ -36,6 +36,12 @@ class SettingsViewModel @Inject constructor(
                     .copy(gameModes = it.map { gameMode -> gameModeMapper.map(gameMode) })
             }
         }
+        viewModelScope.launch {
+            gameModeRepository.customGameModes.collect {
+                _uiState.value = uiState.value
+                    .copy(customGameModes = it.map { gameMode -> gameModeMapper.map(gameMode) })
+            }
+        }
     }
 
     private fun loadFullScreenGameMode() {
@@ -51,6 +57,10 @@ class SettingsViewModel @Inject constructor(
         gameModeRepository.selectGameMode(index)
     }
 
+    fun onCustomGameModeClicked(index: Int) {
+        gameModeRepository.selectCustomGameMode(index)
+    }
+
     fun onFullScreenOptionClicked() {
         toggleFullScreenModeUseCase()
         loadFullScreenGameMode()
@@ -59,5 +69,6 @@ class SettingsViewModel @Inject constructor(
 
 data class UiModel(
     val gameModes: List<GameModeModel> = emptyList(),
+    val customGameModes: List<GameModeModel> = emptyList(),
     val fullScreen: Boolean = false
 )
