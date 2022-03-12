@@ -65,10 +65,23 @@ class SettingsViewModel @Inject constructor(
         toggleFullScreenModeUseCase()
         loadFullScreenGameMode()
     }
+
+    fun onCreateNewGameModeClicked() {
+        _uiState.value = uiState.value.copy(showCreateNewGameModeDialog = true)
+    }
+
+    fun onCreateNewGameModeDismissed() {
+        _uiState.value = uiState.value.copy(showCreateNewGameModeDialog = false)
+    }
+
+    fun createNewGameMode(totalTime: Long, increment: Long) {
+
+    }
 }
 
 data class UiModel(
     val gameModes: List<GameModeModel> = emptyList(),
     val customGameModes: List<GameModeModel> = emptyList(),
-    val fullScreen: Boolean = false
+    val fullScreen: Boolean = false,
+    val showCreateNewGameModeDialog: Boolean = false,
 )

@@ -1,6 +1,7 @@
 package br.com.fornaro.chessclock.android.ui.settings
 
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -9,22 +10,30 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.AlertDialog
 import androidx.compose.material.Button
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
+import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Switch
 import androidx.compose.material.Text
+import androidx.compose.material.TextButton
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -49,11 +58,19 @@ fun SettingsScreen(viewModel: SettingsViewModel = hiltViewModel()) {
                 gameModeClickAction = viewModel::onGameModeButtonClicked,
                 customGameModes = uiState.customGameModes,
                 customGameModeClickAction = viewModel::onCustomGameModeClicked,
+                createNewGameModeClickAction = viewModel::onCreateNewGameModeClicked,
                 fullScreen = uiState.fullScreen,
                 fullScreenClickAction = viewModel::onFullScreenOptionClicked,
             )
         }
     )
+
+    if (uiState.showCreateNewGameModeDialog) {
+        NewGameModeDialog(
+            onDismiss = viewModel::onCreateNewGameModeDismissed,
+            createNewGameSuccessAction = viewModel::createNewGameMode
+        )
+    }
 }
 
 @Composable
@@ -78,6 +95,7 @@ fun Content(
     fullScreen: Boolean,
     gameModeClickAction: (Int) -> Unit,
     customGameModeClickAction: (Int) -> Unit,
+    createNewGameModeClickAction: () -> Unit,
     fullScreenClickAction: () -> Unit,
 ) = Column(
     horizontalAlignment = Alignment.CenterHorizontally,
@@ -89,7 +107,8 @@ fun Content(
         shape = RoundedCornerShape(8.dp),
         modifier = Modifier
             .padding(top = Dimens.default),
-        onClick = { /*TODO*/ }) {
+        onClick = createNewGameModeClickAction
+    ) {
         Text(
             text = "Create custom game mode",
             modifier = Modifier.padding(vertical = 8.dp)
@@ -143,6 +162,57 @@ private fun SectionText(text: String) = Text(
         .padding(start = Dimens.default, top = Dimens.default),
 )
 
+@Composable
+private fun NewGameModeDialog(
+    onDismiss: () -> Unit,
+    createNewGameSuccessAction: (Long, Long) -> Unit,
+) {
+    var totalTime by remember { mutableStateOf("") }
+    var increment by remember { mutableStateOf("") }
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text(text = "Create a new game mode") },
+        text = {
+            Column {
+                OutlinedTextField(
+                    value = totalTime,
+                    onValueChange = { totalTime = it },
+                    label = { Text(text = "Total time") },
+                    modifier = Modifier.padding(top = Dimens.default),
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+                )
+                OutlinedTextField(
+                    value = increment,
+                    onValueChange = { increment = it },
+                    label = { Text(text = "Increment time") },
+                    modifier = Modifier.padding(top = Dimens.default),
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+                )
+            }
+        },
+        buttons = {
+            Row(
+                modifier = Modifier
+                    .padding(end = Dimens.default),
+                horizontalArrangement = Arrangement.End
+            ) {
+                TextButton(onClick = onDismiss) {
+                    Text(text = "Cancel")
+                }
+                TextButton(onClick = {
+                    createNewGameSuccessAction(
+                        totalTime.toLong(),
+                        increment.toLong()
+                    )
+                    onDismiss()
+                }) {
+                    Text(text = "Create")
+                }
+            }
+        },
+    )
+}
+
 @Preview(showBackground = true)
 @Composable
 fun Preview() = Content(
@@ -151,5 +221,6 @@ fun Preview() = Content(
     fullScreen = true,
     gameModeClickAction = {},
     customGameModeClickAction = {},
+    createNewGameModeClickAction = {},
     fullScreenClickAction = {},
 )
