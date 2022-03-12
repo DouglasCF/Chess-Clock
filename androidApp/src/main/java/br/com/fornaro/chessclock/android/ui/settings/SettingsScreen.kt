@@ -169,6 +169,7 @@ private fun NewGameModeDialog(
 ) {
     var totalTime by remember { mutableStateOf("") }
     var increment by remember { mutableStateOf("") }
+
     AlertDialog(
         onDismissRequest = onDismiss,
         title = { Text(text = "Create a new game mode") },
@@ -200,11 +201,13 @@ private fun NewGameModeDialog(
                     Text(text = "Cancel")
                 }
                 TextButton(onClick = {
-                    createNewGameSuccessAction(
-                        totalTime.toLong(),
-                        increment.toLong()
-                    )
-                    onDismiss()
+                    if (totalTime.isNotEmpty()) {
+                        createNewGameSuccessAction(
+                            totalTime.toLong(),
+                            increment.ifEmpty { "0" }.toLong()
+                        )
+                        onDismiss()
+                    }
                 }) {
                     Text(text = "Create")
                 }

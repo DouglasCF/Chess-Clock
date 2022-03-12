@@ -68,4 +68,12 @@ class GameModeRepository {
             }
         }
     }
+
+    fun addCustomGame(totalTime: Long, increment: Long) {
+        val gameMode = GameMode(totalTime, increment)
+        val new = customGameModesList.toMutableList()
+        new.add(gameMode)
+        customGameModesList = new
+        _customGameModes.value = new
+    }
 }
