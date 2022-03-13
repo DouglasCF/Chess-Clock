@@ -75,7 +75,7 @@ class SettingsViewModel @Inject constructor(
     }
 
     fun createNewGameMode(totalTime: Long, increment: Long) {
-        gameModeRepository.addCustomGame(totalTime,increment)
+        gameModeRepository.addCustomGame(totalTime, increment)
     }
 }
 
