@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.AlertDialog
 import androidx.compose.material.Button
@@ -30,9 +31,13 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -162,6 +167,7 @@ private fun SectionText(text: String) = Text(
         .padding(start = Dimens.default, top = Dimens.default),
 )
 
+@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 private fun NewGameModeDialog(
     onDismiss: () -> Unit,
@@ -170,24 +176,53 @@ private fun NewGameModeDialog(
     var totalTime by remember { mutableStateOf("") }
     var increment by remember { mutableStateOf("") }
 
+    val (focusRequester) = FocusRequester.createRefs()
+
+    val createAction = {
+        if (totalTime.isNotEmpty()) {
+            createNewGameSuccessAction(
+                totalTime.toLong(),
+                increment.ifEmpty { "0" }.toLong()
+            )
+            onDismiss()
+        }
+    }
+
     AlertDialog(
         onDismissRequest = onDismiss,
-        title = { Text(text = "Create a new game mode") },
+        title = {
+            Text(
+                text = "Create a new game mode",
+            )
+        },
         text = {
             Column {
                 OutlinedTextField(
                     value = totalTime,
                     onValueChange = { totalTime = it },
                     label = { Text(text = "Total time") },
-                    modifier = Modifier.padding(top = Dimens.default),
-                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+                    keyboardOptions = KeyboardOptions(
+                        keyboardType = KeyboardType.Number,
+                        imeAction = ImeAction.Next
+                    ),
+                    keyboardActions = KeyboardActions(
+                        onNext = { focusRequester.requestFocus() }
+                    )
                 )
                 OutlinedTextField(
                     value = increment,
                     onValueChange = { increment = it },
                     label = { Text(text = "Increment time") },
-                    modifier = Modifier.padding(top = Dimens.default),
-                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+                    modifier = Modifier
+                        .padding(top = Dimens.default)
+                        .focusRequester(focusRequester),
+                    keyboardOptions = KeyboardOptions(
+                        keyboardType = KeyboardType.Number,
+                        imeAction = ImeAction.Done
+                    ),
+                    keyboardActions = KeyboardActions(
+                        onDone = { createAction() }
+                    )
                 )
             }
         },
@@ -200,15 +235,7 @@ private fun NewGameModeDialog(
                 TextButton(onClick = onDismiss) {
                     Text(text = "Cancel")
                 }
-                TextButton(onClick = {
-                    if (totalTime.isNotEmpty()) {
-                        createNewGameSuccessAction(
-                            totalTime.toLong(),
-                            increment.ifEmpty { "0" }.toLong()
-                        )
-                        onDismiss()
-                    }
-                }) {
+                TextButton(onClick = createAction) {
                     Text(text = "Create")
                 }
             }
