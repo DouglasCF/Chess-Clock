@@ -13,7 +13,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import br.com.fornaro.chessclock.android.domain.models.GameModeModel
-import br.com.fornaro.chessclock.android.theme.Dimens
 import br.com.fornaro.chessclock.android.theme.GameMode
 import br.com.fornaro.chessclock.android.theme.GameModeSelected
 
@@ -35,7 +34,7 @@ fun GameModeItem(
             textAlign = TextAlign.Center,
             color = Color.White,
             modifier = Modifier.padding(8.dp)
-            )
+        )
     }
 }
 
