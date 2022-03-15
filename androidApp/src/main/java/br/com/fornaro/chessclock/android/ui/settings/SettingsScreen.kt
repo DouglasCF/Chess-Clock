@@ -5,7 +5,9 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.itemsIndexed
@@ -122,17 +124,18 @@ fun Content(
 
     SectionText(text = "General")
     Row(
+        verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
+            .padding(top = Dimens.default)
             .clickable { fullScreenClickAction() }
             .padding(horizontal = Dimens.default)
-            .padding(top = Dimens.default)
+            .heightIn(0.dp, 48.dp)
+            .fillMaxHeight()
     ) {
         Text(
             text = "App in full screen mode",
             color = Color.Black,
-            modifier = Modifier
-                .align(Alignment.CenterVertically)
-                .weight(1f)
+            modifier = Modifier.weight(1f)
         )
         Switch(
             checked = fullScreen,
@@ -190,11 +193,7 @@ private fun NewGameModeDialog(
 
     AlertDialog(
         onDismissRequest = onDismiss,
-        title = {
-            Text(
-                text = "Create a new game mode",
-            )
-        },
+        title = { Text(text = "Create a new game mode") },
         text = {
             Column {
                 OutlinedTextField(
@@ -229,14 +228,15 @@ private fun NewGameModeDialog(
         buttons = {
             Row(
                 modifier = Modifier
-                    .padding(end = Dimens.default),
+                    .padding(end = Dimens.default)
+                    .fillMaxWidth(),
                 horizontalArrangement = Arrangement.End
             ) {
                 TextButton(onClick = onDismiss) {
                     Text(text = "Cancel")
                 }
                 TextButton(onClick = createAction) {
-                    Text(text = "Create")
+                    Text(text = "Create", fontWeight = FontWeight.Bold)
                 }
             }
         },

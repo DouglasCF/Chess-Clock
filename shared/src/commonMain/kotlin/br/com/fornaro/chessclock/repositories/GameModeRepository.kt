@@ -23,9 +23,7 @@ class GameModeRepository {
         GameMode(45, 45),
     )
 
-    private var customGameModesList = mutableListOf(
-        GameMode(3, 3),
-    )
+    private var customGameModesList = mutableListOf<GameMode>()
 
     private val _gameModes = MutableStateFlow<List<GameMode>>(gameModesList)
     val gameModes get() = _gameModes
