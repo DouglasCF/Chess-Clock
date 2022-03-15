@@ -3,6 +3,7 @@ package br.com.fornaro.chessclock.android.ui.home
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import br.com.fornaro.chessclock.Game
+import br.com.fornaro.chessclock.model.GameMode
 import br.com.fornaro.chessclock.repositories.GameModeRepository
 import br.com.fornaro.chessclock.usecases.GetFullScreenModeUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -32,11 +33,24 @@ class HomeViewModel @Inject constructor(
 
     private fun observeGameMode() {
         viewModelScope.launch {
-            gameModeRepository.gameModes.map { it.first { it.isSelected } }.collect {
-                totalTime = it.time * 60 * Game.milliConst
-                incrementalTime = it.increment * Game.milliConst
+            gameModeRepository.gameModes.map { it.firstOrNull { it.isSelected } }.collect {
+                if (it != null) {
+                    updateGameMode(it)
+                }
             }
         }
+        viewModelScope.launch {
+            gameModeRepository.customGameModes.map { it.firstOrNull { it.isSelected } }.collect {
+                if (it != null) {
+                    updateGameMode(it)
+                }
+            }
+        }
+    }
+
+    private fun updateGameMode(gameMode: GameMode) {
+        totalTime = gameMode.time * 60 * Game.milliConst
+        incrementalTime = gameMode.increment * Game.milliConst
     }
 
     fun loadFullScreenGameMode() {
