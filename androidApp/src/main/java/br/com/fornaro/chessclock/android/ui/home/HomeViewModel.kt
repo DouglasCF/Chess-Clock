@@ -58,11 +58,6 @@ class HomeViewModel @Inject constructor(
         _uiState.value = uiState.value.copy(fullScreen = value)
     }
 
-     fun loadFullScreenGameMode() {
-        val value = getFullScreenModeUseCase()
-        _uiState.value = uiState.value.copy(fullScreen = value)
-    }
-
     fun startGame(totalTime: Long = this.totalTime, incrementalTime: Long = this.incrementalTime) {
         this.totalTime = totalTime
         this.incrementalTime = incrementalTime
