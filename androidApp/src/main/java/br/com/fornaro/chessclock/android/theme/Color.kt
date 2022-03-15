@@ -2,7 +2,7 @@ package br.com.fornaro.chessclock.android.theme
 
 import androidx.compose.ui.graphics.Color
 
-val PrimaryColor = Color(0xFFFFFFFF)
+val PrimaryColor = Color(0xFF6106C1)
 val SecondaryColor = Color(0xFF300063)
 
 val Victory = Color(0xFF009900)

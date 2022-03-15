@@ -7,9 +7,10 @@ object Dependencies {
         "com.google.dagger:hilt-android-gradle-plugin:${Versions.hilt}"
     const val googleServicePlugin = "com.google.gms:google-services:4.3.10"
     const val dependenciesPlugin = "com.github.ben-manes.versions"
+    const val ktlintPlugin = "org.jlleitschuh.gradle.ktlint"
 
     // AndroidX
-    const val appCompat = "androidx.appcompat:appcompat:1.4.0"
+    const val appCompat = "androidx.appcompat:appcompat:1.4.1"
 
     // Compose
     const val composeUi = "androidx.compose.ui:ui:${Versions.compose}"
@@ -31,8 +32,8 @@ object Dependencies {
 
     // Compose and others
     const val composeActivity = "androidx.activity:activity-compose:1.4.0"
-    const val composeNavigation = "androidx.navigation:navigation-compose:2.4.0-beta02"
-    const val composeHiltNavigation = "androidx.hilt:hilt-navigation-compose:1.0.0-beta01"
+    const val composeNavigation = "androidx.navigation:navigation-compose:2.5.0-alpha03"
+    const val composeHiltNavigation = "androidx.hilt:hilt-navigation-compose:1.0.0"
     const val composeCoil = "io.coil-kt:coil-compose:1.4.0"
 
     val composeAndOthersDependencies = listOf(
@@ -43,7 +44,7 @@ object Dependencies {
     )
 
     // Accompanist
-    const val accompanist = "com.google.accompanist:accompanist-systemuicontroller:0.24.2-alpha"
+    const val accompanist = "com.google.accompanist:accompanist-systemuicontroller:0.24.3-alpha"
 
     // Hilt
     const val hiltAndroid = "com.google.dagger:hilt-android:${Versions.hilt}"

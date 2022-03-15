@@ -12,7 +12,7 @@ android {
         minSdk = Versions.minSdk
         targetSdk = Versions.targetSdk
         versionCode = 1
-        versionName = "1.1"
+        versionName = "1.2"
     }
 
     buildFeatures {
@@ -33,7 +33,18 @@ android {
 
     buildTypes {
         getByName("release") {
-            isMinifyEnabled = false
+            isShrinkResources = true
+            isMinifyEnabled = true
+            isDebuggable = false
+            proguardFiles(
+                getDefaultProguardFile("proguard-android.txt"),
+                "proguard-rules.pro"
+            )
+        }
+        getByName("debug") {
+            applicationIdSuffix = ".DEV"
+            versionNameSuffix = ".DEV"
+            isDebuggable = true
         }
     }
 }
